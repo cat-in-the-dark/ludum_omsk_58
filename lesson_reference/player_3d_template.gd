@@ -5,9 +5,6 @@ extends CharacterBody3D
 @export var move_speed := 8.0
 ## Ground movement acceleration in meters per second squared.
 @export var acceleration := 20.0
-## When the player is on the ground and presses the jump button, the vertical
-## velocity is set to this value.
-@export var jump_impulse := 12.0 * 2
 ## Player model rotation speed in arbitrary units. Controls how fast the
 ## character skin orients to the movement or camera direction.
 @export var rotation_speed := 12.0
@@ -15,22 +12,41 @@ extends CharacterBody3D
 ## animation tree changes between the idle and running states.
 @export var stopping_speed := 1.0
 
-@export var sprint_acceleration := 20
-@export var sprint_move_speed := 12.0
-
+@export var sprint_acceleration := acceleration * 3
+@export var sprint_move_speed := move_speed * 2
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.25
 @export var tilt_upper_limit := PI / 3.0
 @export var tilt_lower_limit := -PI / 8.0
 
+# just as metric for jumps/run etc
+var character_height = 4.5
+
 ## Each frame, we find the height of the ground below the player and store it here.
 ## The camera uses this to keep a fixed height while the player jumps, for example.
 var ground_height := 0.0
 
-var _gravity := -30.0
+# would affect both jump and gravity, and maybe other things
+# for tuning jumps etc
+var gravity_base_multiplier = 2.0
+
+# when falling, gravity is more....3ravitier 
+var descendingGravityFactor = 1.3
+
+# how gliding affects gravity (1 - not affecting, 0 - no gravity, lol)
+var glidingGravityModifier = 1 / descendingGravityFactor * 0.3
+
+var stompGravityModifier = 3
+
+var _gravity : int = -30.0 * gravity_base_multiplier
 var _was_on_floor_last_frame := true
+var is_stomping = false
 var _camera_input_direction := Vector2.ZERO
+
+## When the player is on the ground and presses the 'jump' button, the vertical
+## velocity is set to this value.
+@export var jump_impulse :int = (character_height * 3) * gravity_base_multiplier
 
 ## The last movement or aim direction input by the player. We use this to orient
 ## the character model.
@@ -44,7 +60,9 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _landing_sound: AudioStreamPlayer3D = %LandingSound
 @onready var _jump_sound: AudioStreamPlayer3D = %JumpSound
 @onready var _dust_particles: GPUParticles3D = %DustParticles
+@onready var _glide_particles: GPUParticles3D = %GlideParticles
 
+@onready var _stomp_particles: GPUParticles3D = %StompParticles
 
 func _ready() -> void:
 	Events.kill_plane_touched.connect(func on_kill_plane_touched() -> void:
@@ -81,10 +99,15 @@ func _physics_process(delta: float) -> void:
 	var current_move_speed = move_speed
 	var current_acceleration = acceleration
 	
+	var appliedGravity = _gravity
+	if is_stomping:
+		appliedGravity *= stompGravityModifier
+	
 	# relates to gliding or opposite
 	var current_gravity_modifier = 1
 	var running = false
 	
+	_glide_particles.emitting = false
 	
 	# Decide whether or not 'run' button is being pressed:
 	if Input.is_action_pressed("run"):
@@ -92,10 +115,7 @@ func _physics_process(delta: float) -> void:
 		current_move_speed = sprint_move_speed
 		current_acceleration = sprint_acceleration
 	else:
-		_dust_particles.emitting = false
-	
-	if Input.is_action_pressed("glide"):
-		current_gravity_modifier = 0.5
+		running = false
 	
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
 	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, tilt_lower_limit, tilt_upper_limit)
@@ -120,6 +140,20 @@ func _physics_process(delta: float) -> void:
 	var target_angle := Vector3.BACK.signed_angle_to(_last_input_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
 
+	var is_just_jumping := Input.is_action_pressed("jump") and is_on_floor()	
+	
+	if velocity.y < 0:
+		appliedGravity = appliedGravity * descendingGravityFactor
+		if !is_stomping:
+			if !is_just_jumping && Input.is_action_just_pressed("crunch"):
+				is_stomping = true
+				appliedGravity *= stompGravityModifier
+			elif !is_just_jumping && Input.is_action_pressed("jump"):
+				_glide_particles.emitting = true
+				appliedGravity *= glidingGravityModifier
+	else:
+		appliedGravity = appliedGravity
+
 	# We separate out the y velocity to only interpolate the velocity in the
 	# ground plane, and not affect the gravity.
 	var y_velocity := velocity.y
@@ -127,17 +161,18 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(move_direction * current_move_speed, current_acceleration * delta)
 	if is_equal_approx(move_direction.length_squared(), 0.0) and velocity.length_squared() < stopping_speed:
 		velocity = Vector3.ZERO
-	velocity.y = y_velocity + _gravity * current_gravity_modifier * delta
-
-	# Character animations and visual effects.
+		
+	velocity.y = y_velocity + appliedGravity * current_gravity_modifier * delta
 	var ground_speed := Vector2(velocity.x, velocity.z).length()
-	var is_just_jumping := Input.is_action_just_pressed("jump") and is_on_floor()
+	
+	# Character animations and visual effects.
 	if is_just_jumping:
 		velocity.y += jump_impulse
 		_skin.jump()
 		_jump_sound.play()
 	elif not is_on_floor() and velocity.y < 0:
 		_skin.fall()
+		
 	elif is_on_floor():
 		if ground_speed > 0.0:
 			_skin.move()
@@ -148,6 +183,10 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor() and not _was_on_floor_last_frame:
 		_landing_sound.play()
+		if is_stomping:
+			_stomp_particles.restart()
+		is_stomping = false
+
 
 	_was_on_floor_last_frame = is_on_floor()
 	move_and_slide()

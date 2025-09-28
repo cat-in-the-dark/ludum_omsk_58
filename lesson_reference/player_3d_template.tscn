@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b1ot6gn6tms6h"]
 
-[ext_resource type="Script" path="res://lesson_reference/player_3d_template.gd" id="1_dpokc"]
+[ext_resource type="Script" uid="uid://b5ecua1qxlsek" path="res://lesson_reference/player_3d_template.gd" id="1_dpokc"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="2_4dj54"]
 [ext_resource type="AudioStream" uid="uid://bhoyegbjust84" path="res://player/sounds/robot_land.wav" id="3_kbqxf"]
 [ext_resource type="AudioStream" uid="uid://b4x0f4pgfifoo" path="res://player/sounds/robot_jump.wav" id="4_1v0dq"]
@@ -38,7 +38,7 @@ albedo_color = Color(0.536729, 0.511356, 0.854902, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vpbss"]
 material = SubResource("StandardMaterial3D_kpdwg")
-radius = 0.15
+radius = 0.25
 height = 0.3
 radial_segments = 8
 rings = 8
@@ -69,6 +69,30 @@ gi_mode = 0
 amount = 10
 lifetime = 0.7
 explosiveness = 0.05
+process_material = SubResource("ParticleProcessMaterial_tqdcj")
+draw_pass_1 = SubResource("SphereMesh_vpbss")
+
+[node name="GlideParticles" type="GPUParticles3D" parent="SophiaSkin"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136607, -0.190934)
+cast_shadow = 0
+gi_mode = 0
+amount = 10
+lifetime = 0.7
+explosiveness = 0.05
+process_material = SubResource("ParticleProcessMaterial_tqdcj")
+draw_pass_1 = SubResource("SphereMesh_vpbss")
+
+[node name="StompParticles" type="GPUParticles3D" parent="SophiaSkin"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136607, -0.190934)
+cast_shadow = 0
+gi_mode = 0
+emitting = false
+amount = 20
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.15
 process_material = SubResource("ParticleProcessMaterial_tqdcj")
 draw_pass_1 = SubResource("SphereMesh_vpbss")
 
