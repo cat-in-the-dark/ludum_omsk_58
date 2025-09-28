@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var player_idx = 1
+
 @export_group("Movement")
 ## Character maximum run speed on the ground in meters per second.
 @export var move_speed := 8.0
@@ -19,6 +21,7 @@ extends CharacterBody3D
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.25
 @export var tilt_upper_limit := PI / 3.0
 @export var tilt_lower_limit := -PI / 8.0
+@export var _camera: Camera3D
 
 # just as metric for jumps/run etc
 var character_height = 4.5
@@ -55,7 +58,7 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _start_position := global_position
 
 @onready var _camera_pivot: Node3D = %CameraPivot
-@onready var _camera: Camera3D = %Camera3D
+@onready var _camera_anchor: Node3D = $CameraPivot/SpringArm3D/CameraAnchor
 @onready var _skin: SophiaSkin = %SophiaSkin
 @onready var _landing_sound: AudioStreamPlayer3D = %LandingSound
 @onready var _jump_sound: AudioStreamPlayer3D = %JumpSound
@@ -110,7 +113,7 @@ func _physics_process(delta: float) -> void:
 	_glide_particles.emitting = false
 	
 	# Decide whether or not 'run' button is being pressed:
-	if Input.is_action_pressed("run"):
+	if Input.is_action_pressed("run_%d" % player_idx):
 		running = true
 		current_move_speed = sprint_move_speed
 		current_acceleration = sprint_acceleration
@@ -124,10 +127,15 @@ func _physics_process(delta: float) -> void:
 	_camera_input_direction = Vector2.ZERO
 
 	# Calculate movement input and align it to the camera's direction.
-	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down", 0.4)
+	var raw_input := Input.get_vector("move_left_%d" % player_idx, "move_right_%d" % player_idx, "move_up_%d" % player_idx, "move_down_%d" % player_idx, 0.4)
 	# Should be projected onto the ground plane.
-	var forward := _camera.global_basis.z
-	var right := _camera.global_basis.x
+	var forward := Vector3.FORWARD
+	var right := Vector3.RIGHT
+	if _camera != null:
+		forward = _camera.global_basis.z
+		right = _camera.global_basis.x
+		_camera.global_position = _camera_anchor.global_position
+		_camera.global_rotation = _camera_anchor.global_rotation
 	var move_direction := forward * raw_input.y + right * raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
@@ -140,15 +148,15 @@ func _physics_process(delta: float) -> void:
 	var target_angle := Vector3.BACK.signed_angle_to(_last_input_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
 
-	var is_just_jumping := Input.is_action_pressed("jump") and is_on_floor()	
+	var is_just_jumping := Input.is_action_pressed("jump_%d" % player_idx) and is_on_floor()	
 	
 	if velocity.y < 0:
 		appliedGravity = appliedGravity * descendingGravityFactor
 		if !is_stomping:
-			if !is_just_jumping && Input.is_action_just_pressed("crunch"):
+			if !is_just_jumping && Input.is_action_just_pressed("crunch_%d" % player_idx):
 				is_stomping = true
 				appliedGravity *= stompGravityModifier
-			elif !is_just_jumping && Input.is_action_pressed("jump"):
+			elif !is_just_jumping && Input.is_action_pressed("jump_%d" % player_idx):
 				_glide_particles.emitting = true
 				appliedGravity *= glidingGravityModifier
 	else:
