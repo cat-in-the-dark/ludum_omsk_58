@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq2ova8hsxglo"]
+
+[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://screens/window_view.gd" id="1_5ltii"]
+[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://screens/window_main.gd" id="1_7clrm"]
+
+[node name="main_split_windows" type="Node"]
+script = ExtResource("1_7clrm")
+
+[node name="Window1" type="Window" parent="."]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(640, 360)
+transient = true
+script = ExtResource("1_5ltii")
+
+[node name="Window2" type="Window" parent="."]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(640, 360)
+transient = true
+script = ExtResource("1_5ltii")

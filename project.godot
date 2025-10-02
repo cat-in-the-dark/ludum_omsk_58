@@ -23,15 +23,11 @@ Events="*res://autoload/events.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/initial_screen=1
 window/size/window_width_override=2560
 window/size/window_height_override=1440
+window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gdquest_colorpicker_presets/plugin.cfg")
 
 [filesystem]
 
@@ -126,4 +122,5 @@ crunch_2={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
 anti_aliasing/quality/msaa_3d=2
