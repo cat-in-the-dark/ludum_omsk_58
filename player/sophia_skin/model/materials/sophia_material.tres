@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://geugmmpk87b8"]
 
-[ext_resource type="Texture2D" uid="uid://6jb7dt4d54ck" path="res://player/sophia_skin/model/sophia_diffuse.png" id="1_w6gun"]
+[ext_resource type="Texture2D" uid="uid://bsjsq42n4o1h7" path="res://player/sophia_skin/model/sophia_diffuse.png" id="1_w6gun"]
 
 [resource]
 shading_mode = 0

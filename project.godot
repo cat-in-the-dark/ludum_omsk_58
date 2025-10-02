@@ -13,6 +13,9 @@ config_version=5
 config/name="M2. Get to Know 3D (Interactive Tours)"
 run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [autoload]
@@ -28,10 +31,6 @@ window/size/window_height_override=1440
 window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
-
-[filesystem]
-
-import/blender/enabled=false
 
 [input]
 
@@ -122,5 +121,5 @@ crunch_2={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
-anti_aliasing/quality/msaa_3d=2
