@@ -7,6 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_cxv6w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxv6w"]
+shading_mode = 0
 
 [node name="Box" type="RigidBody3D"]
 collision_layer = 8

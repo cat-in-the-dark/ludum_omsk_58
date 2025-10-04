@@ -26,7 +26,6 @@ size = Vector2i(180, 180)
 render_target_update_mode = 4
 
 [node name="SophiaSkin" parent="CanvasLayer1/Character_1/SubViewport" instance=ExtResource("3_r4iih")]
-variant = 1
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer1/Character_1/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8938906, 2)
@@ -54,6 +53,7 @@ render_target_update_mode = 4
 
 [node name="SophiaSkin" parent="CanvasLayer1/Character_2/SubViewport" instance=ExtResource("3_r4iih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.736339, 0, 0)
+variant = 2
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer1/Character_2/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.736339, 0.8938906, 2)
