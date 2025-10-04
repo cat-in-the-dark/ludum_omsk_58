@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 @export var player_idx = 1
+@export var kicking_ability = true
+@export var pulling_ability = false
 
 @export_group("Movement")
 ## Character maximum run speed on the ground in meters per second.
@@ -67,6 +69,9 @@ var _camera_input_direction := Vector2.ZERO
 
 @onready var _stomp_particles: GPUParticles3D = %StompParticles
 
+@onready var _kickingArea: Area3D = $SophiaSkin/KickArea
+var kicking = false
+
 func _ready() -> void:
 	Events.kill_plane_touched.connect(func on_kill_plane_touched() -> void:
 		global_position = _start_position
@@ -110,6 +115,15 @@ func _physics_process(delta: float) -> void:
 	var current_gravity_modifier = 1
 	var running = false
 	
+	if kicking_ability:
+		if kicking:
+			kicking = false
+			_kickingArea.monitoring = false
+		elif Input.is_action_just_pressed("ability_%d" % player_idx):
+			kicking = true
+			_kickingArea.monitoring = true
+	#elif pulling_ability:
+
 	_glide_particles.emitting = false
 	
 	# Decide whether or not 'run' button is being pressed:
@@ -194,7 +208,26 @@ func _physics_process(delta: float) -> void:
 		if is_stomping:
 			_stomp_particles.restart()
 		is_stomping = false
-
-
 	_was_on_floor_last_frame = is_on_floor()
 	move_and_slide()
+
+# get Vector3 with movementDirection (x,z)
+func getCharacterLookDirection():
+	var skin_direction_basis: Basis = _skin.global_basis
+	#wvar direction_basis: Basis = transform.basis
+	return skin_direction_basis.z
+
+func getKickVelocity():
+	var kick_horizontal_strengh = 30
+	var kick_vertical_strength = 30
+	var kick_velocity = Vector3.ZERO
+	var direction = getCharacterLookDirection()
+	kick_velocity.x = direction.x * kick_horizontal_strengh
+	kick_velocity.y = kick_vertical_strength
+	kick_velocity.z = direction.z * kick_horizontal_strengh
+	return kick_velocity
+
+func _on_kick_area_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		body.velocity = getKickVelocity()
+	pass # Replace with function body.
