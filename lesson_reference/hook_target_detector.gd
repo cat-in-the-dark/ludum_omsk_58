@@ -12,22 +12,27 @@ var hook_max_targeting_dist = 100
 var hook_targets: Array[PhysicsBody3D] = []
 var hook_target: int = -1
 
+func get_hook_target() -> PhysicsBody3D:
+	if hook_target < 0:
+		return null
+	if len(hook_targets) == 0:
+		return null
+	if hook_target >= len(hook_targets):
+		print("WTF?")
+		return null
+	return hook_targets[hook_target]
+
 func _on_enter_hook_area(body: PhysicsBody3D) -> void:
 	if body == player: # prevent self collision
 		return
-
 	# new object would be at the end.. Ok?
 	hook_targets.push_back(body)
-	print('Hook targets add: ', hook_targets)
-	pass
-	
+
 func _on_exit_hook_area(body: PhysicsBody3D) -> void:
 	if body == player: # prevent self collision
 		return
-
 	# could be slow, but who cares
 	hook_targets.erase(body)
-	print('Hook targets del: ', hook_targets)
 	pass
 
 func _ready() -> void:
@@ -41,7 +46,6 @@ func update_best_target():
 	if len(hook_targets) == 0:
 		return null
 	var screen_center = player.hookTargetPointer.get_viewport_rect().size / 2
-	print(player, screen_center)
 	var min_dist = 10000000
 	var min_pos = Vector2.ZERO
 	hook_target = -1

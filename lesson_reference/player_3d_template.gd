@@ -6,7 +6,7 @@ var kicking_ability = true
 var pulling_ability = false
 
 @export var hookTargetPointer: TextureRect
-@onready var _hookingArea: HookTargetDetector = $HookTargetDetector
+@onready var _hookTargetDetector: HookTargetDetector = $HookTargetDetector
 
 @export_group("Movement")
 ## Character maximum run speed on the ground in meters per second.
@@ -91,8 +91,8 @@ func set_skills():
 
 	if not pulling_ability:
 		# fast hack to remove hooking area if no ability
-		remove_child(_hookingArea)
-		_hookingArea = null
+		remove_child(_hookTargetDetector)
+		_hookTargetDetector = null
 		if hookTargetPointer:
 			hookTargetPointer.hide()
 		
@@ -148,6 +148,7 @@ func _handle_camera_joystic_move():
 
 func _do_hooking():
 	print("TODO: pulling ability")
+	# _hookTargetDetector.get_hook_target()
 
 func _physics_process(delta: float) -> void:
 	_handle_camera_joystic_move()
