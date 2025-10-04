@@ -28,7 +28,7 @@ script = ExtResource("1_5ltii")
 [node name="Game" parent="Window1" instance=ExtResource("3_htifh")]
 
 [node name="Player3DTemplate" parent="Window1/Game" index="0" node_paths=PackedStringArray("hookTargetPointer")]
-hookTargetPointer = NodePath("")
+hookTargetPointer = NodePath("../../HookTargetPointer_1")
 
 [node name="Window2" type="Window" parent="."]
 canvas_item_default_texture_filter = 0

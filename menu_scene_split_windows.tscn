@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct10icgu45m3o"]
+[gd_scene load_steps=5 format=3 uid="uid://ct10icgu45m3o"]
 
 [ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://screens/window_main.gd" id="1_y5iuu"]
 [ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://screens/window_view.gd" id="2_1hlud"]
-[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="3_2xieh"]
-[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://goto_scene.gd" id="4_68exs"]
-
-[sub_resource type="Environment" id="Environment_vbts7"]
-background_mode = 3
-tonemap_mode = 2
+[ext_resource type="PackedScene" uid="uid://dpv7xsdeqkswa" path="res://menu/menu_canvas.tscn" id="3_y5iuu"]
+[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://menu_scene.gd" id="4_68exs"]
 
 [node name="MenuScene" type="Node"]
 script = ExtResource("1_y5iuu")
@@ -17,6 +13,7 @@ canvas_item_default_texture_filter = 0
 oversampling_override = 1.0
 mode = 2
 initial_position = 1
+size = Vector2i(640, 360)
 transient = true
 borderless = true
 content_scale_size = Vector2i(640, 360)
@@ -24,65 +21,14 @@ content_scale_mode = 2
 content_scale_aspect = 1
 script = ExtResource("2_1hlud")
 
-[node name="CanvasLayer1" type="CanvasLayer" parent="Window1"]
-
-[node name="Character_1" type="SubViewportContainer" parent="Window1/CanvasLayer1"]
-offset_right = 180.0
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="Window1/CanvasLayer1/Character_1"]
-transparent_bg = true
-handle_input_locally = false
-snap_2d_transforms_to_pixel = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(180, 180)
-render_target_update_mode = 4
-
-[node name="SophiaSkin" parent="Window1/CanvasLayer1/Character_1/SubViewport" instance=ExtResource("3_2xieh")]
-
-[node name="Camera3D" type="Camera3D" parent="Window1/CanvasLayer1/Character_1/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8938906, 2)
-projection = 1
-size = 2.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Window1/CanvasLayer1/Character_1/SubViewport"]
-environment = SubResource("Environment_vbts7")
-
-[node name="Character_2" type="SubViewportContainer" parent="Window1/CanvasLayer1"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -180.0
-offset_bottom = 360.0
-grow_horizontal = 0
-
-[node name="SubViewport" type="SubViewport" parent="Window1/CanvasLayer1/Character_2"]
-transparent_bg = true
-handle_input_locally = false
-snap_2d_transforms_to_pixel = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(180, 180)
-render_target_update_mode = 4
-
-[node name="SophiaSkin" parent="Window1/CanvasLayer1/Character_2/SubViewport" instance=ExtResource("3_2xieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.736339, 0, 0)
-variant = 2
-
-[node name="Camera3D" type="Camera3D" parent="Window1/CanvasLayer1/Character_2/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.736339, 0.8938906, 2)
-projection = 1
-size = 2.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Window1/CanvasLayer1/Character_2/SubViewport"]
-environment = SubResource("Environment_vbts7")
+[node name="MenuCanvas" parent="Window1" instance=ExtResource("3_y5iuu")]
 
 [node name="Window2" type="Window" parent="."]
 canvas_item_default_texture_filter = 0
 oversampling_override = 1.0
 mode = 3
 initial_position = 3
+size = Vector2i(640, 360)
 current_screen = 1
 borderless = true
 content_scale_size = Vector2i(640, 360)
@@ -90,60 +36,15 @@ content_scale_mode = 2
 content_scale_aspect = 1
 script = ExtResource("2_1hlud")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="Window2"]
+[node name="MenuCanvas" parent="Window2" instance=ExtResource("3_y5iuu")]
 
-[node name="Character_1" type="SubViewportContainer" parent="Window2/CanvasLayer2"]
-offset_right = 180.0
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="Window2/CanvasLayer2/Character_1"]
-transparent_bg = true
-handle_input_locally = false
-snap_2d_transforms_to_pixel = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(180, 180)
-render_target_update_mode = 4
-
-[node name="SophiaSkin" parent="Window2/CanvasLayer2/Character_1/SubViewport" instance=ExtResource("3_2xieh")]
-
-[node name="Camera3D" type="Camera3D" parent="Window2/CanvasLayer2/Character_1/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8938906, 2)
-projection = 1
-size = 2.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Window2/CanvasLayer2/Character_1/SubViewport"]
-environment = SubResource("Environment_vbts7")
-
-[node name="Character_2" type="SubViewportContainer" parent="Window2/CanvasLayer2"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -180.0
-offset_bottom = 360.0
-grow_horizontal = 0
-
-[node name="SubViewport" type="SubViewport" parent="Window2/CanvasLayer2/Character_2"]
-transparent_bg = true
-handle_input_locally = false
-snap_2d_transforms_to_pixel = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(180, 180)
-render_target_update_mode = 4
-
-[node name="SophiaSkin" parent="Window2/CanvasLayer2/Character_2/SubViewport" instance=ExtResource("3_2xieh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.736339, 0, 0)
-variant = 2
-
-[node name="Camera3D" type="Camera3D" parent="Window2/CanvasLayer2/Character_2/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.736339, 0.8938906, 2)
-projection = 1
-size = 2.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Window2/CanvasLayer2/Character_2/SubViewport"]
-environment = SubResource("Environment_vbts7")
-
-[node name="Menu" type="Node" parent="."]
+[node name="Menu" type="Node" parent="." node_paths=PackedStringArray("text_1", "text_2", "skin_1", "skin_2")]
 script = ExtResource("4_68exs")
+text_1 = [NodePath("../Window1/MenuCanvas/Text_1"), NodePath("../Window2/MenuCanvas/Text_1")]
+text_2 = [NodePath("../Window1/MenuCanvas/Text_2"), NodePath("../Window2/MenuCanvas/Text_2")]
+skin_1 = [NodePath("../Window1/MenuCanvas/Character_1/SubViewport/SophiaSkin"), NodePath("../Window2/MenuCanvas/Character_1/SubViewport/SophiaSkin")]
+skin_2 = [NodePath("../Window1/MenuCanvas/Character_2/SubViewport/SophiaSkin"), NodePath("../Window2/MenuCanvas/Character_2/SubViewport/SophiaSkin")]
 next_scene = "res://main_split_windows.tscn"
+
+[editable path="Window1/MenuCanvas"]
+[editable path="Window2/MenuCanvas"]
