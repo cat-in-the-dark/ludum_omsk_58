@@ -74,6 +74,7 @@ var _camera_input_direction := Vector2.ZERO
 var kicking = false
 
 func _ready() -> void:
+	_skin.set_variant(player_idx)
 	Events.kill_plane_touched.connect(func on_kill_plane_touched() -> void:
 		global_position = _start_position
 		velocity = Vector3.ZERO

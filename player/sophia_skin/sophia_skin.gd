@@ -12,14 +12,23 @@ var run_tilt = 0.0 : set = _set_run_tilt
 @onready var eye_mat = $sophia/rig/Skeleton3D/Sophia.get("surface_material_override/2")
 
 @onready var baseMesh: MeshInstance3D = $sophia/rig/Skeleton3D/Sophia
-@export_enum("Green_Kick:0", "Red_Hook:1") var variant: int = 0
+@export_enum("Green_Kick:1", "Red_Hook:2") var variant: int = 1
 @onready var materials = [
 	preload("res://player/sophia_skin/model/materials/sophia_material_green.tres"),
 	preload("res://player/sophia_skin/model/materials/sophia_material_red.tres")
 ]
 
+func set_variant(new_variant: int) -> void:
+	variant = new_variant % len(materials)
+	_apply_material_variant()
+
+func _apply_material_variant() -> void:
+	# we count players and variants from 1
+	var idx := (variant - 1) % len(materials)
+	baseMesh.set_surface_override_material(0, materials[idx])
+
 func _ready():
-	baseMesh.set_surface_override_material(0, materials[variant])
+	_apply_material_variant()
 	
 	blink_timer.connect("timeout", func():
 		eye_mat.set("uv1_offset", Vector3(0.0, 0.5, 0.0))
