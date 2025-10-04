@@ -11,7 +11,16 @@ var run_tilt = 0.0 : set = _set_run_tilt
 @onready var closed_eyes_timer = %ClosedEyesTimer
 @onready var eye_mat = $sophia/rig/Skeleton3D/Sophia.get("surface_material_override/2")
 
+@onready var baseMesh: MeshInstance3D = $sophia/rig/Skeleton3D/Sophia
+@export_enum("Green_Kick:0", "Red_Hook:1") var variant: int = 0
+@onready var materials = [
+	preload("res://player/sophia_skin/model/materials/sophia_material_green.tres"),
+	preload("res://player/sophia_skin/model/materials/sophia_material_red.tres")
+]
+
 func _ready():
+	baseMesh.set_surface_override_material(0, materials[variant])
+	
 	blink_timer.connect("timeout", func():
 		eye_mat.set("uv1_offset", Vector3(0.0, 0.5, 0.0))
 		closed_eyes_timer.start(0.2)
