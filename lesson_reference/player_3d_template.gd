@@ -20,9 +20,10 @@ extends CharacterBody3D
 @export var sprint_move_speed := move_speed * 2
 
 @export_group("Camera")
+@export_range(0.0, 10.0) var joystick_sensitivity := 2.5
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.25
-@export var tilt_upper_limit := PI / 3.0
-@export var tilt_lower_limit := -PI / 8.0
+@export var tilt_upper_limit := PI / 4.0
+@export var tilt_lower_limit := -PI / 4.0
 @export var _camera: Camera3D
 
 # just as metric for jumps/run etc
@@ -108,9 +109,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera_input_direction.x = -event.relative.x * mouse_sensitivity
 		_camera_input_direction.y = event.relative.y * mouse_sensitivity
 
+func _handle_camera_joystic_move():
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		return
+	var raw_input := Input.get_vector("camera_left_%d" % player_idx, "camera_right_%d" % player_idx, "camera_up_%d" % player_idx, "camera_down_%d" % player_idx, 0.2)
+	_camera_input_direction.x = -raw_input.x * joystick_sensitivity
+	_camera_input_direction.y = raw_input.y * joystick_sensitivity
 
 func _physics_process(delta: float) -> void:
-	
+	_handle_camera_joystic_move()
 	var current_move_speed = move_speed
 	var current_acceleration = acceleration
 	
