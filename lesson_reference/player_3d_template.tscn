@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1ot6gn6tms6h"]
+[gd_scene load_steps=13 format=3 uid="uid://b1ot6gn6tms6h"]
 
 [ext_resource type="Script" uid="uid://b5ecua1qxlsek" path="res://lesson_reference/player_3d_template.gd" id="1_dpokc"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="2_4dj54"]
@@ -43,11 +43,16 @@ height = 0.3
 radial_segments = 8
 rings = 8
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jgkwk"]
+size = Vector3(0.8, 1, 0.3)
+
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_h1hkf"]
 length = 0.5
 slide_on_slope = true
 
 [node name="Player3DTemplate" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -66,6 +71,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136607, -0.190934)
 cast_shadow = 0
 gi_mode = 0
+emitting = false
 amount = 10
 lifetime = 0.7
 explosiveness = 0.05
@@ -77,6 +83,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.136607, -0.190934)
 cast_shadow = 0
 gi_mode = 0
+emitting = false
 amount = 10
 lifetime = 0.7
 explosiveness = 0.05
@@ -95,6 +102,16 @@ one_shot = true
 explosiveness = 0.15
 process_material = SubResource("ParticleProcessMaterial_tqdcj")
 draw_pass_1 = SubResource("SphereMesh_vpbss")
+
+[node name="KickArea" type="Area3D" parent="SophiaSkin"]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SophiaSkin/KickArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.554384, 0.57715654)
+shape = SubResource("BoxShape3D_jgkwk")
 
 [node name="LandingSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
@@ -117,3 +134,5 @@ spring_length = 8.0
 
 [node name="CameraAnchor" type="Node3D" parent="CameraPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[connection signal="body_entered" from="SophiaSkin/KickArea" to="." method="_on_kick_area_body_entered"]
