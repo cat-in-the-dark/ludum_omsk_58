@@ -79,6 +79,13 @@ func _ready() -> void:
 		_skin.idle()
 		set_physics_process(true)
 	)
+	Events.kill_plane_touched_with_id.connect(func on_kill_plane_touched_with_id(killedObjectId: int) -> void:
+		if killedObjectId == get_instance_id():
+			global_position = _start_position
+			velocity = Vector3.ZERO
+			_skin.idle()
+			set_physics_process(true)
+	)
 	Events.flag_reached.connect(func on_flag_reached() -> void:
 		set_physics_process(false)
 		_skin.idle()
@@ -230,4 +237,6 @@ func getKickVelocity():
 func _on_kick_area_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		body.velocity = getKickVelocity()
+	elif body is RigidBody3D:
+		body.linear_velocity = getKickVelocity()
 	pass # Replace with function body.
