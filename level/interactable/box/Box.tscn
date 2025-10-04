@@ -8,6 +8,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxv6w"]
 shading_mode = 0
+albedo_color = Color(1, 0.63139, 0.939201, 1)
 
 [node name="Box" type="RigidBody3D"]
 collision_layer = 8
