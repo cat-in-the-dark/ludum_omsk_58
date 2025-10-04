@@ -71,7 +71,14 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _stomp_particles: GPUParticles3D = %StompParticles
 
 @onready var _kickingArea: Area3D = $SophiaSkin/KickArea
+@onready var _interactArea: Area3D = $SophiaSkin/InteractArea
 var kicking = false
+
+var objectToInteractWith: RigidBody3D = null
+var holdedObject: RigidBody3D = null
+var holdedObjectMock: Node3D = null
+var holdedObjectParent: Node3D = null
+var holdingObjectNow = false
 
 func set_skills():
 	if player_idx == 1:
@@ -155,6 +162,38 @@ func _physics_process(delta: float) -> void:
 		# maybe some code
 		if Input.is_action_just_pressed("ability_%d" % player_idx):
 			print("TODO: pulling ability")
+	
+	if Input.is_action_just_pressed("interact_%d" % player_idx):
+		if holdingObjectNow:
+			# release object
+			var prev_global := holdedObjectMock.global_transform
+			remove_child(holdedObjectMock)
+			holdedObjectMock.queue_free()
+			holdedObjectParent.add_child(holdedObject)
+			holdedObject.global_transform = prev_global
+			holdedObject.freeze = false
+			holdedObject.lock_rotation = false
+			holdedObjectParent = null
+			holdedObject = null
+			holdedObjectMock = null
+			holdingObjectNow = false
+		elif objectToInteractWith != null:
+			# grab object
+			holdedObject = objectToInteractWith
+			holdedObject.linear_velocity = Vector3.ZERO
+			holdedObject.lock_rotation = true
+			#holdedObject.freeze = true
+			#holdedObject.sleeping = true
+			holdedObjectParent = holdedObject.get_parent()
+			#var prev_global := holdedObject.global_transform
+			holdedObjectParent.remove_child(holdedObject)
+			if holdedObject.has_method("getMockObject"):
+				holdedObjectMock = holdedObject.getMockObject()
+				_skin.add_child(holdedObjectMock)
+				holdedObjectMock.transform = _interactArea.transform
+			#holdedObject.transform = _interactArea.transform
+			objectToInteractWith = null
+			holdingObjectNow = true
 
 	_glide_particles.emitting = false
 	
@@ -264,4 +303,18 @@ func _on_kick_area_body_entered(body: Node3D) -> void:
 		body.velocity = getKickVelocity()
 	elif body is RigidBody3D:
 		body.linear_velocity = getKickVelocity()
+	pass # Replace with function body.
+
+func _on_interact_area_body_entered(body: Node3D) -> void:
+	print_debug("entered %d" % body.name)
+	if !holdingObjectNow && objectToInteractWith == null && body is RigidBody3D:
+		print_debug("can interact with %d" % body.name)
+		objectToInteractWith = body
+	pass # Replace with function body.
+
+func _on_interact_area_body_exited(body: Node3D) -> void:
+	print_debug("left %d" % body.name)
+	if !holdingObjectNow && body is RigidBody3D:
+		print_debug("no longer interactable -  %d" % body.name)
+		objectToInteractWith = null
 	pass # Replace with function body.

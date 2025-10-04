@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1ot6gn6tms6h"]
+[gd_scene load_steps=14 format=3 uid="uid://b1ot6gn6tms6h"]
 
 [ext_resource type="Script" uid="uid://b5ecua1qxlsek" path="res://lesson_reference/player_3d_template.gd" id="1_dpokc"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="2_4dj54"]
@@ -45,6 +45,9 @@ rings = 8
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jgkwk"]
 size = Vector3(0.8, 1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vre6p"]
+size = Vector3(0.8, 1.2702637, 0.37155762)
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_h1hkf"]
 length = 0.5
@@ -113,6 +116,16 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.554384, 0.57715654)
 shape = SubResource("BoxShape3D_jgkwk")
 
+[node name="InteractArea" type="Area3D" parent="SophiaSkin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8207347, 0.5870716)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SophiaSkin/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.033325195, 0.025550663)
+shape = SubResource("BoxShape3D_vre6p")
+
 [node name="LandingSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_kbqxf")
@@ -136,3 +149,5 @@ spring_length = 8.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [connection signal="body_entered" from="SophiaSkin/KickArea" to="." method="_on_kick_area_body_entered"]
+[connection signal="body_entered" from="SophiaSkin/InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="SophiaSkin/InteractArea" to="." method="_on_interact_area_body_exited"]
