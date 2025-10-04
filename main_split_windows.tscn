@@ -9,19 +9,31 @@
 script = ExtResource("1_7clrm")
 
 [node name="Window1" type="Window" parent="."]
+canvas_item_default_texture_filter = 0
 oversampling_override = 1.0
-position = Vector2i(0, 36)
-size = Vector2i(640, 360)
+mode = 2
+initial_position = 1
 transient = true
+borderless = true
+force_native = true
+content_scale_size = Vector2i(640, 360)
+content_scale_mode = 2
+content_scale_aspect = 1
 script = ExtResource("1_5ltii")
 
 [node name="Game" parent="Window1" instance=ExtResource("3_htifh")]
 
 [node name="Window2" type="Window" parent="."]
+canvas_item_default_texture_filter = 0
 oversampling_override = 1.0
-position = Vector2i(0, 36)
-size = Vector2i(640, 360)
+mode = 3
+initial_position = 3
+current_screen = 1
 transient = true
+borderless = true
+force_native = true
+content_scale_mode = 2
+content_scale_aspect = 1
 script = ExtResource("1_5ltii")
 
 [node name="Player2" parent="Window2" node_paths=PackedStringArray("_camera") instance=ExtResource("4_yybna")]

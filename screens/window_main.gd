@@ -6,7 +6,7 @@ extends Node
 func _ready() -> void:
 	#_MainWindow.borderless = true		# Hide the edges of the window
 	_MainWindow.unresizable = true		# Prevent resizing the window
-	_MainWindow.always_on_top = true		# Force the window always be on top of the screen
+	#_MainWindow.always_on_top = true		# Force the window always be on top of the screen
 	_MainWindow.gui_embed_subwindows = false	# Make subwindows actual system windows <- VERY IMPORTANT
 	_MainWindow.transparent = true		# Allow the window to be transparent
 	# Settings that cannot be set in project settings
