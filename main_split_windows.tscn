@@ -23,6 +23,10 @@ script = ExtResource("1_5ltii")
 
 [node name="Game" parent="Window1" instance=ExtResource("3_htifh")]
 
+[node name="Player3DTemplate" parent="Window1/Game" index="0"]
+collision_layer = 1
+collision_mask = 1
+
 [node name="Window2" type="Window" parent="."]
 canvas_item_default_texture_filter = 0
 oversampling_override = 1.0
@@ -32,12 +36,15 @@ current_screen = 1
 transient = true
 borderless = true
 force_native = true
+content_scale_size = Vector2i(640, 360)
 content_scale_mode = 2
 content_scale_aspect = 1
 script = ExtResource("1_5ltii")
 
 [node name="Player2" parent="Window2" node_paths=PackedStringArray("_camera") instance=ExtResource("4_yybna")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3192439, 0, -7.8513)
+collision_layer = 1
+collision_mask = 1
 player_idx = 2
 _camera = NodePath("../Camera2")
 
