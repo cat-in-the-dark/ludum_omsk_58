@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://screens/window_main.gd" id="1_y5iuu"]
 [ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://screens/window_view.gd" id="2_1hlud"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="3_2xieh"]
-[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://menu.gd" id="4_68exs"]
+[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://goto_scene.gd" id="4_68exs"]
 
 [sub_resource type="Environment" id="Environment_vbts7"]
 background_mode = 3

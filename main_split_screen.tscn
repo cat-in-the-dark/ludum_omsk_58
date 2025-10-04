@@ -37,5 +37,6 @@ player_idx = 2
 _camera = NodePath("../Camera3D_2")
 
 [node name="FlagReachedScreen" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("3_yx8je")]
+next_scene = "res://gamewin_scene_split_screen.tscn"
 
 [editable path="HBoxContainer/SubViewportContainer1/SubViewport1/Game"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://kwgikxse14ah"]
 
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="3_r4iih"]
-[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://menu.gd" id="4_a3oxm"]
+[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://goto_scene.gd" id="4_a3oxm"]
 
 [sub_resource type="Environment" id="Environment_vbts7"]
 background_mode = 3

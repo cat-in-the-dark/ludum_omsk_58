@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="M2. Get to Know 3D (Interactive Tours)"
-run/main_scene="res://game.tscn"
+run/main_scene="uid://kwgikxse14ah"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/show_image=false
 boot_splash/fullsize=false

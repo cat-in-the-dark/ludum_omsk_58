@@ -43,6 +43,9 @@ size = Vector3(7, 27, 11)
 [node name="Flag3D" parent="." instance=ExtResource("8_kebk2")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -55.25, 10, -20)
 
+[node name="Flag3D2" parent="." instance=ExtResource("8_kebk2")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4.5512023, 2.0646176, -29.509552)
+
 [node name="CSGBox3D10" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 7.5, -20)
 material_override = ExtResource("7_njuj4")

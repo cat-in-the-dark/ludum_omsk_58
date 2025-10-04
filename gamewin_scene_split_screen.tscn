@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://j01dkqxmyy7k"]
+
+[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://goto_scene.gd" id="1_1p2e6"]
+
+[node name="GameWinScene" type="Node"]
+
+[node name="CanvasLayer1" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer1"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "WIN!"
+
+[node name="GameWin" type="Node" parent="."]
+script = ExtResource("1_1p2e6")
+next_scene = "res://menu_scene_split_screen.tscn"
