@@ -10,13 +10,8 @@ script = ExtResource("1_1il7v")
 
 [node name="Player3DTemplate" parent="." node_paths=PackedStringArray("_camera") instance=ExtResource("1_w0p8v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43638, 0, -7.8513)
-player_idx = 1
-move_speed = 8.0
-rotation_speed = 12.0
-stopping_speed = 1.0
-mouse_sensitivity = 0.25
-tilt_upper_limit = 1.0471975511965976
-tilt_lower_limit = -0.39269908169872414
+collision_layer = 1
+collision_mask = 1
 _camera = NodePath("../Camera3D")
 
 [node name="FlagReachedScreen" parent="." instance=ExtResource("19_cpgj4")]

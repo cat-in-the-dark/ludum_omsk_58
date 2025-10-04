@@ -1,16 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://ct10icgu45m3o"]
 
-[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://screens/window_main.gd" id="1_hko7e"]
-[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="1_vbts7"]
-[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://screens/window_view.gd" id="3_mfwt2"]
-[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://menu.gd" id="4_i4wrx"]
+[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://screens/window_main.gd" id="1_y5iuu"]
+[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://screens/window_view.gd" id="2_1hlud"]
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="3_2xieh"]
+[ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://menu.gd" id="4_68exs"]
 
 [sub_resource type="Environment" id="Environment_vbts7"]
 background_mode = 3
 tonemap_mode = 2
 
 [node name="MenuScene" type="Node"]
-script = ExtResource("1_hko7e")
+script = ExtResource("1_y5iuu")
 
 [node name="Window1" type="Window" parent="."]
 canvas_item_default_texture_filter = 0
@@ -22,7 +22,7 @@ borderless = true
 content_scale_size = Vector2i(640, 360)
 content_scale_mode = 2
 content_scale_aspect = 1
-script = ExtResource("3_mfwt2")
+script = ExtResource("2_1hlud")
 
 [node name="CanvasLayer1" type="CanvasLayer" parent="Window1"]
 
@@ -40,7 +40,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(180, 180)
 render_target_update_mode = 4
 
-[node name="SophiaSkin" parent="Window1/CanvasLayer1/Character_1/SubViewport" instance=ExtResource("1_vbts7")]
+[node name="SophiaSkin" parent="Window1/CanvasLayer1/Character_1/SubViewport" instance=ExtResource("3_2xieh")]
 variant = 1
 
 [node name="Camera3D" type="Camera3D" parent="Window1/CanvasLayer1/Character_1/SubViewport"]
@@ -67,7 +67,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(180, 180)
 render_target_update_mode = 4
 
-[node name="SophiaSkin" parent="Window1/CanvasLayer1/Character_2/SubViewport" instance=ExtResource("1_vbts7")]
+[node name="SophiaSkin" parent="Window1/CanvasLayer1/Character_2/SubViewport" instance=ExtResource("3_2xieh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.736339, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Window1/CanvasLayer1/Character_2/SubViewport"]
@@ -88,7 +88,7 @@ borderless = true
 content_scale_size = Vector2i(640, 360)
 content_scale_mode = 2
 content_scale_aspect = 1
-script = ExtResource("3_mfwt2")
+script = ExtResource("2_1hlud")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="Window2"]
 
@@ -106,7 +106,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(180, 180)
 render_target_update_mode = 4
 
-[node name="SophiaSkin" parent="Window2/CanvasLayer2/Character_1/SubViewport" instance=ExtResource("1_vbts7")]
+[node name="SophiaSkin" parent="Window2/CanvasLayer2/Character_1/SubViewport" instance=ExtResource("3_2xieh")]
 variant = 1
 
 [node name="Camera3D" type="Camera3D" parent="Window2/CanvasLayer2/Character_1/SubViewport"]
@@ -133,7 +133,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(180, 180)
 render_target_update_mode = 4
 
-[node name="SophiaSkin" parent="Window2/CanvasLayer2/Character_2/SubViewport" instance=ExtResource("1_vbts7")]
+[node name="SophiaSkin" parent="Window2/CanvasLayer2/Character_2/SubViewport" instance=ExtResource("3_2xieh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.736339, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Window2/CanvasLayer2/Character_2/SubViewport"]
@@ -145,4 +145,5 @@ size = 2.0
 environment = SubResource("Environment_vbts7")
 
 [node name="Menu" type="Node" parent="."]
-script = ExtResource("4_i4wrx")
+script = ExtResource("4_68exs")
+next_scene = "res://main_split_windows.tscn"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://21jakirix3hu"]
 
-[ext_resource type="PackedScene" uid="uid://bvt4747kc5u2t" path="res://game.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://lesson_reference/player_3d_template.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bvt4747kc5u2t" path="res://game.tscn" id="1_ejo5v"]
+[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://lesson_reference/player_3d_template.tscn" id="2_yx8je"]
 
 [node name="main" type="Node"]
 
@@ -17,7 +17,7 @@ handle_input_locally = false
 size = Vector2i(320, 360)
 render_target_update_mode = 4
 
-[node name="Game" parent="HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("1_ig7tw")]
+[node name="Game" parent="HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("1_ejo5v")]
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -30,7 +30,7 @@ render_target_update_mode = 4
 [node name="Camera3D_2" type="Camera3D" parent="HBoxContainer/SubViewportContainer2/SubViewport2"]
 fov = 50.0
 
-[node name="Player_2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" node_paths=PackedStringArray("_camera") instance=ExtResource("2_0xm2m")]
+[node name="Player_2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" node_paths=PackedStringArray("_camera") instance=ExtResource("2_yx8je")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31189203, 0, -5.652145)
 player_idx = 2
 _camera = NodePath("../Camera3D_2")
