@@ -30,7 +30,7 @@ lod_bias = 10.0
 [node name="Area3D" type="Area3D" parent="." index="2"]
 unique_name_in_owner = true
 collision_layer = 128
-collision_mask = 2
+collision_mask = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

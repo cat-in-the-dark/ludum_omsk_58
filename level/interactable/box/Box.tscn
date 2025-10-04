@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://brqo6apdh8ja8"]
+
+[ext_resource type="Script" uid="uid://dcqgwuvn3872b" path="res://level/interactable/box/Box.gd" id="1_cxv6w"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cxv6w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxv6w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxv6w"]
+
+[node name="Box" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 131
+physics_material_override = SubResource("PhysicsMaterial_cxv6w")
+can_sleep = false
+script = ExtResource("1_cxv6w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cxv6w")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = SubResource("StandardMaterial3D_cxv6w")
