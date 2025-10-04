@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 @export var player_idx = 1
-@export var kicking_ability = true
-@export var pulling_ability = false
+var kicking_ability = true
+var pulling_ability = false
 
 @export_group("Movement")
 ## Character maximum run speed on the ground in meters per second.
@@ -73,8 +73,21 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _kickingArea: Area3D = $SophiaSkin/KickArea
 var kicking = false
 
+func set_skills():
+	if player_idx == 1:
+		kicking_ability = true
+		pulling_ability = false
+	elif player_idx == 2:
+		kicking_ability = false
+		pulling_ability = true
+	else:
+		# GOD MODE HAHAHAHA
+		kicking_ability = true
+		pulling_ability = true
+
 func _ready() -> void:
 	_skin.set_variant(player_idx)
+	set_skills()
 	Events.kill_plane_touched.connect(func on_kill_plane_touched() -> void:
 		global_position = _start_position
 		velocity = Vector3.ZERO
@@ -135,9 +148,13 @@ func _physics_process(delta: float) -> void:
 			kicking = false
 			_kickingArea.monitoring = false
 		elif Input.is_action_just_pressed("ability_%d" % player_idx):
+			print("Kicking")
 			kicking = true
 			_kickingArea.monitoring = true
-	#elif pulling_ability:
+	elif pulling_ability:
+		# maybe some code
+		if Input.is_action_just_pressed("ability_%d" % player_idx):
+			print("TODO: pulling ability")
 
 	_glide_particles.emitting = false
 	
