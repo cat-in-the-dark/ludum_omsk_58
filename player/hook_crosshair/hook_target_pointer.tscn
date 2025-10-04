@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1f6dvhwmiinb"]
+
+[ext_resource type="Texture2D" uid="uid://2c456vn38op1" path="res://player/hook_crosshair/cross.png" id="1_rb22g"]
+
+[node name="HookTargetPointer" type="TextureRect"]
+offset_right = 24.0
+offset_bottom = 24.0
+pivot_offset = Vector2(12, 12)
+texture = ExtResource("1_rb22g")
+expand_mode = 1

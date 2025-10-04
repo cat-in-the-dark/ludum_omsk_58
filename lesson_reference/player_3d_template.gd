@@ -5,6 +5,9 @@ extends CharacterBody3D
 var kicking_ability = true
 var pulling_ability = false
 
+@export var hookTargetPointer: TextureRect
+@onready var _hookingArea: HookTargetDetector = $HookTargetDetector
+
 @export_group("Movement")
 ## Character maximum run speed on the ground in meters per second.
 @export var move_speed := 8.0
@@ -86,6 +89,14 @@ func set_skills():
 		kicking_ability = true
 		pulling_ability = true
 
+	if not pulling_ability:
+		# fast hack to remove hooking area if no ability
+		remove_child(_hookingArea)
+		_hookingArea = null
+		if hookTargetPointer:
+			hookTargetPointer.hide()
+		
+
 func _ready() -> void:
 	_skin.set_variant(player_idx)
 	set_skills()
@@ -135,6 +146,9 @@ func _handle_camera_joystic_move():
 	_camera_input_direction.x = -raw_input.x * joystick_sensitivity
 	_camera_input_direction.y = raw_input.y * joystick_sensitivity
 
+func _do_hooking():
+	print("TODO: pulling ability")
+
 func _physics_process(delta: float) -> void:
 	_handle_camera_joystic_move()
 	var current_move_speed = move_speed
@@ -159,7 +173,7 @@ func _physics_process(delta: float) -> void:
 	elif pulling_ability:
 		# maybe some code
 		if Input.is_action_just_pressed("ability_%d" % player_idx):
-			print("TODO: pulling ability")
+			_do_hooking()
 
 	_glide_particles.emitting = false
 	

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://21jakirix3hu"]
+[gd_scene load_steps=5 format=3 uid="uid://21jakirix3hu"]
 
+[ext_resource type="PackedScene" uid="uid://b1f6dvhwmiinb" path="res://player/hook_crosshair/hook_target_pointer.tscn" id="1_150ms"]
 [ext_resource type="PackedScene" uid="uid://bvt4747kc5u2t" path="res://game.tscn" id="1_ejo5v"]
 [ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://lesson_reference/player_3d_template.tscn" id="2_yx8je"]
 [ext_resource type="PackedScene" uid="uid://bxg6oejpaitdt" path="res://level/interactable/flag/flag_reached_screen.tscn" id="3_yx8je"]
@@ -18,7 +19,12 @@ handle_input_locally = false
 size = Vector2i(320, 360)
 render_target_update_mode = 4
 
+[node name="HookTargetPointer_1" parent="HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("1_150ms")]
+
 [node name="Game" parent="HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("1_ejo5v")]
+
+[node name="Player3DTemplate" parent="HBoxContainer/SubViewportContainer1/SubViewport1/Game" index="0" node_paths=PackedStringArray("hookTargetPointer")]
+hookTargetPointer = NodePath("../../HookTargetPointer_1")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -28,12 +34,15 @@ handle_input_locally = false
 size = Vector2i(320, 360)
 render_target_update_mode = 4
 
+[node name="HookTargetPointer_2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("1_150ms")]
+
 [node name="Camera3D_2" type="Camera3D" parent="HBoxContainer/SubViewportContainer2/SubViewport2"]
 fov = 50.0
 
-[node name="Player_2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" node_paths=PackedStringArray("_camera") instance=ExtResource("2_yx8je")]
+[node name="Player_2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" node_paths=PackedStringArray("hookTargetPointer", "_camera") instance=ExtResource("2_yx8je")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31189203, 0, -5.652145)
 player_idx = 2
+hookTargetPointer = NodePath("../HookTargetPointer_2")
 _camera = NodePath("../Camera3D_2")
 
 [node name="FlagReachedScreen" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("3_yx8je")]

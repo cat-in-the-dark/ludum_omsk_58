@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1ot6gn6tms6h"]
+[gd_scene load_steps=14 format=3 uid="uid://b1ot6gn6tms6h"]
 
 [ext_resource type="Script" uid="uid://b5ecua1qxlsek" path="res://lesson_reference/player_3d_template.gd" id="1_dpokc"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://player/sophia_skin/sophia_skin.tscn" id="2_4dj54"]
 [ext_resource type="AudioStream" uid="uid://bhoyegbjust84" path="res://player/sounds/robot_land.wav" id="3_kbqxf"]
 [ext_resource type="AudioStream" uid="uid://b4x0f4pgfifoo" path="res://player/sounds/robot_jump.wav" id="4_1v0dq"]
+[ext_resource type="PackedScene" uid="uid://djugmg305huk3" path="res://lesson_reference/hook_target_detector.tscn" id="5_vre6p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e8pdu"]
 radius = 0.4
@@ -134,5 +135,7 @@ spring_length = 8.0
 
 [node name="CameraAnchor" type="Node3D" parent="CameraPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="HookTargetDetector" parent="." instance=ExtResource("5_vre6p")]
 
 [connection signal="body_entered" from="SophiaSkin/KickArea" to="." method="_on_kick_area_body_entered"]
