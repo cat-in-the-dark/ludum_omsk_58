@@ -13,12 +13,11 @@ size = Vector3(7.9, 7.9, 0.8)
 [node name="Door" type="Node3D"]
 script = ExtResource("1_n4gn1")
 
-[node name="Body" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_tk7ng")
+skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Body/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_syaef")
