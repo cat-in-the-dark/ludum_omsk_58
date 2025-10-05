@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnedxfn2pxh2t"]
+[gd_scene load_steps=11 format=3 uid="uid://cnedxfn2pxh2t"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_44x8d"]
 [ext_resource type="PackedScene" uid="uid://csjo346dagrji" path="res://level/interactable/cat/CatSmile.tscn" id="1_ktfr2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d4brk11gfax78" path="res://level/interactable/flag/flag.tscn" id="5_ktfr2"]
 [ext_resource type="Material" uid="uid://da188d7yrcfr8" path="res://level/platforms.tres" id="7_njuj4"]
 [ext_resource type="PackedScene" uid="uid://dh01h4uw8yfv2" path="res://level/interactable/checkpoint/checkpoint.tscn" id="8_0v1st"]
+[ext_resource type="PackedScene" uid="uid://buqfn2kftowtw" path="res://level/interactable/pressing_plate/pressing_plate.tscn" id="9_6gtgk"]
 
 [sub_resource type="Environment" id="Environment_6gtgk"]
 background_mode = 2
@@ -135,3 +136,6 @@ material = ExtResource("7_njuj4")
 
 [node name="Checkpoint" parent="." instance=ExtResource("8_0v1st")]
 transform = Transform3D(-0.9367333, 0, 0.35004392, 0, 1, 0, -0.35004392, 0, -0.9367333, -3.6669433, 6, -17.251385)
+
+[node name="PressingPlate" parent="." instance=ExtResource("9_6gtgk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2234721, 1.9073486e-06, -33.452755)
