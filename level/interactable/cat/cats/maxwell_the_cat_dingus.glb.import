@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://psw6d710l8hx"
-path="res://.godot/imported/cat_-_ps1_low_poly_rigged.glb-b13ca53e7a366f844fd1a71e3f56fe63.scn"
+uid="uid://dw0xv4mm0585i"
+path="res://.godot/imported/maxwell_the_cat_dingus.glb-45ad6dd0512ec687d471cd67f38ac3ed.scn"
 
 [deps]
 
-source_file="res://level/interactable/cat/cat_-_ps1_low_poly_rigged.glb"
-dest_files=["res://.godot/imported/cat_-_ps1_low_poly_rigged.glb-b13ca53e7a366f844fd1a71e3f56fe63.scn"]
+source_file="res://level/interactable/cat/cats/maxwell_the_cat_dingus.glb"
+dest_files=["res://.godot/imported/maxwell_the_cat_dingus.glb-45ad6dd0512ec687d471cd67f38ac3ed.scn"]
 
 [params]
 

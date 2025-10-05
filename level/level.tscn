@@ -1,5 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnedxfn2pxh2t"]
+[gd_scene load_steps=8 format=3 uid="uid://cnedxfn2pxh2t"]
 
+[ext_resource type="Script" uid="uid://d2b17e5vuvmw8" path="res://level/level.gd" id="1_44x8d"]
+[ext_resource type="PackedScene" uid="uid://csjo346dagrji" path="res://level/interactable/cat/CatSmile.tscn" id="1_ktfr2"]
 [ext_resource type="PackedScene" uid="uid://brqo6apdh8ja8" path="res://level/interactable/box/Box.tscn" id="1_vkbyq"]
 [ext_resource type="PackedScene" uid="uid://bij84ol81kcts" path="res://level/interactable/kill_plane/kill_plane_3d.tscn" id="3_1g472"]
 [ext_resource type="PackedScene" uid="uid://d4brk11gfax78" path="res://level/interactable/flag/flag.tscn" id="5_ktfr2"]
@@ -11,6 +13,10 @@ ambient_light_source = 1
 reflected_light_source = 1
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_44x8d")
+
+[node name="Cat" parent="." instance=ExtResource("1_ktfr2")]
+transform = Transform3D(0.9989957, 0, -0.04480505, 0, 1, 0, 0.04480505, 0, 0.9989957, -2.5320315, 6.902055, -22.9591)
 
 [node name="Box" parent="." instance=ExtResource("1_vkbyq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09400368, 0.5874715, -25.934095)

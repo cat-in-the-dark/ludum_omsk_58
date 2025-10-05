@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj1j4b5mevuvy"]
+
+[ext_resource type="Material" uid="uid://eu7pwv3hw1kx" path="res://level/interactable/cat/cats/smile_cat.tres" id="1_xfv47"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cpjc6"]
+
+[node name="Cat" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cpjc6")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = ExtResource("1_xfv47")

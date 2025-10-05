@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://csjo346dagrji"]
+
+[ext_resource type="Script" uid="uid://5vw5xxn85iki" path="res://level/interactable/cat/LookingCat.gd" id="1_1f8qm"]
+[ext_resource type="Material" uid="uid://eu7pwv3hw1kx" path="res://level/interactable/cat/cats/smile_cat.tres" id="1_38j0i"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1f8qm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cpjc6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1f8qm"]
+radius = 2.0
+
+[node name="Cat" type="StaticBody3D"]
+transform = Transform3D(0.9989957, 0, -0.04480505, 0, 1, 0, 0.04480505, 0, 0.9989957, 0, 0, 0)
+collision_layer = 4
+collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_1f8qm")
+script = ExtResource("1_1f8qm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cpjc6")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = ExtResource("1_38j0i")
+
+[node name="PlayerSeekerArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSeekerArea"]
+shape = SubResource("SphereShape3D_1f8qm")
+
+[connection signal="body_entered" from="PlayerSeekerArea" to="." method="_on_player_seeker_area_body_entered"]
+[connection signal="body_exited" from="PlayerSeekerArea" to="." method="_on_player_seeker_area_body_exited"]
