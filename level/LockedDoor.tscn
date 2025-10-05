@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2tch8jkv56ui"]
+
+[ext_resource type="PackedScene" uid="uid://tlqhrjq7snnj" path="res://level/DoorFrame.tscn" id="1_ih4rd"]
+
+[node name="LockedDoor" type="Node3D"]
+
+[node name="DoorFrame" parent="." instance=ExtResource("1_ih4rd")]

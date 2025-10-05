@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwqoi8t66fhru"]
+
+[ext_resource type="Material" uid="uid://da188d7yrcfr8" path="res://level/platforms.tres" id="1_0pbhu"]
+
+[node name="LongWall" type="CSGCombiner3D"]
+use_collision = true
+collision_mask = 11
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(1, 10, 20)
+material = ExtResource("1_0pbhu")
