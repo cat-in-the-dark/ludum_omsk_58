@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @export_file_path var next_scene: String
+@export_file_path var restart_scene: String
 var startMSec: int = 0
 
 func _ready() -> void:
@@ -15,3 +16,8 @@ func _ready() -> void:
 		if next_scene != null and next_scene != "":
 			get_tree().change_scene_to_file(next_scene)
 	)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_restart"):
+		if restart_scene != null and restart_scene != "":
+			get_tree().change_scene_to_file(restart_scene)

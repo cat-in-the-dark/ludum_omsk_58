@@ -58,5 +58,6 @@ fov = 50.0
 
 [node name="FlagReachedScreen" parent="Window2" instance=ExtResource("5_cb1g2")]
 next_scene = "res://gamewin_scene_split_windows.tscn"
+restart_scene = "res://menu_scene_split_windows.tscn"
 
 [editable path="Window1/Game"]

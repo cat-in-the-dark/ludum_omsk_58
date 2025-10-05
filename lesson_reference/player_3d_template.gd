@@ -156,6 +156,9 @@ func _do_hooking():
 	var target = _hookTargetDetector.get_hook_target()
 	if not target:
 		return
+	if target is Player:
+		target.global_position = _interactArea.global_position
+		return
 	objectToInteractWith = target
 	_grabObject()
 	
