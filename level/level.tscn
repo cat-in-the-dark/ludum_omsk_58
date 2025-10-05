@@ -1,14 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnedxfn2pxh2t"]
+[gd_scene load_steps=9 format=3 uid="uid://cnedxfn2pxh2t"]
 
-[ext_resource type="Script" uid="uid://d2b17e5vuvmw8" path="res://level/level.gd" id="1_44x8d"]
+[ext_resource type="Script" path="res://level/level.gd" id="1_44x8d"]
 [ext_resource type="PackedScene" uid="uid://csjo346dagrji" path="res://level/interactable/cat/CatSmile.tscn" id="1_ktfr2"]
 [ext_resource type="PackedScene" uid="uid://brqo6apdh8ja8" path="res://level/interactable/box/Box.tscn" id="1_vkbyq"]
 [ext_resource type="PackedScene" uid="uid://bij84ol81kcts" path="res://level/interactable/kill_plane/kill_plane_3d.tscn" id="3_1g472"]
+[ext_resource type="Sky" uid="uid://r5xeigeohfnk" path="res://level/sky/sky.tres" id="4_ivpvi"]
 [ext_resource type="PackedScene" uid="uid://d4brk11gfax78" path="res://level/interactable/flag/flag.tscn" id="5_ktfr2"]
 [ext_resource type="Material" uid="uid://da188d7yrcfr8" path="res://level/platforms.tres" id="7_njuj4"]
 
 [sub_resource type="Environment" id="Environment_6gtgk"]
-background_mode = 1
+background_mode = 2
+sky = ExtResource("4_ivpvi")
 ambient_light_source = 1
 reflected_light_source = 1
 
