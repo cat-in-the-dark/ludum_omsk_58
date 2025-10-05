@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjhux5w8f3rlx"]
+
+[ext_resource type="Material" uid="uid://da188d7yrcfr8" path="res://level/platforms.tres" id="1_vqx3r"]
+
+[node name="WideDoorFrame" type="CSGCombiner3D"]
+use_collision = true
+collision_mask = 11
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(8, 8, 1)
+material = ExtResource("1_vqx3r")
+
+[node name="Small1" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.5, 0.2, 0)
+operation = 2
+radius = 1.0
+sides = 5
+material = ExtResource("1_vqx3r")
+
+[node name="Small2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.5, 0.2, 0)
+operation = 2
+radius = 1.0
+sides = 5
+material = ExtResource("1_vqx3r")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.5, 0)
+operation = 2
+radius = 1.7
+sides = 4
+material = ExtResource("1_vqx3r")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1, -1.5, 0)
+operation = 2
+radius = 1.7
+sides = 4
+material = ExtResource("1_vqx3r")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1, -1.5, 0)
+operation = 2
+radius = 1.7
+sides = 4
+material = ExtResource("1_vqx3r")

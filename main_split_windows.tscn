@@ -28,6 +28,7 @@ script = ExtResource("1_5ltii")
 [node name="Game" parent="Window1" instance=ExtResource("3_htifh")]
 
 [node name="Player3DTemplate" parent="Window1/Game" index="0" node_paths=PackedStringArray("hookTargetPointer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43638, 0, -2.8512998)
 hookTargetPointer = NodePath("../../HookTargetPointer_1")
 
 [node name="Window2" type="Window" parent="."]
@@ -47,7 +48,7 @@ script = ExtResource("1_5ltii")
 [node name="HookTargetPointer_2" parent="Window2" instance=ExtResource("3_myisc")]
 
 [node name="Player2" parent="Window2" node_paths=PackedStringArray("hookTargetPointer", "_camera") instance=ExtResource("4_yybna")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3192439, 0, -7.8513)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3192439, 0, -2.8512998)
 player_idx = 2
 hookTargetPointer = NodePath("../HookTargetPointer_2")
 _camera = NodePath("../Camera2")

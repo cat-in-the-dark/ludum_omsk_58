@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "M_TVCRT": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://level/interactable/checkpoint/M_TVCRT.tres",
+"use_external/fallback_path": "res://level/interactable/checkpoint/tv_off_mat.tres",
 "use_external/path": "uid://bc6m6dn5eg3rk"
 }
 }

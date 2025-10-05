@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhi3t8nx58lop"]
+
+[ext_resource type="PackedScene" uid="uid://cjhux5w8f3rlx" path="res://level/WideDoorFrame.tscn" id="1_a0anw"]
+[ext_resource type="PackedScene" uid="uid://fd3yimdhx2b3" path="res://level/interactable/door/door.tscn" id="1_ketho"]
+[ext_resource type="Script" uid="uid://ku5mv1irg2m3" path="res://level/wide_locked_door.gd" id="1_r72dj"]
+
+[node name="WideLockedDoor" type="Node3D"]
+script = ExtResource("1_r72dj")
+
+[node name="Door" parent="." instance=ExtResource("1_ketho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8829293, 0)
+
+[node name="WideDoorFrame" parent="." instance=ExtResource("1_a0anw")]

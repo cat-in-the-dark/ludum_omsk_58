@@ -2,7 +2,7 @@ extends RigidBody3D
 
 @onready var body = $"."
 @onready var model = $Model
-var body_mass = 10
+var body_mass = 100
 @onready var box_start_position = global_position
 
 func _ready() -> void:

@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" uid="uid://b1p1lnectvs25" path="res://game.gd" id="1_1il7v"]
 [ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://lesson_reference/player_3d_template.tscn" id="1_w0p8v"]
-[ext_resource type="PackedScene" uid="uid://cnedxfn2pxh2t" path="res://level/level.tscn" id="7_2frud"]
+[ext_resource type="PackedScene" uid="uid://cbjlfi4bvs8bl" path="res://level/level-first.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://bxg6oejpaitdt" path="res://level/interactable/flag/flag_reached_screen.tscn" id="19_cpgj4"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_1il7v")
 
 [node name="Player3DTemplate" parent="." node_paths=PackedStringArray("_camera") instance=ExtResource("1_w0p8v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43638, 0, -7.8513)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43638, 0, -3.33674)
 _camera = NodePath("../Camera3D")
 
 [node name="FlagReachedScreen" parent="." instance=ExtResource("19_cpgj4")]
 
-[node name="Level" parent="." instance=ExtResource("7_2frud")]
+[node name="Level" parent="." instance=ExtResource("4_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 31.4)
 
 [node name="Camera3D" type="Camera3D" parent="."]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://tr3g4ht2yr46"]
+
+[ext_resource type="Material" uid="uid://da188d7yrcfr8" path="res://level/platforms.tres" id="1_iyrce"]
+
+[node name="HighSlope" type="CSGCombiner3D"]
+use_collision = true
+collision_mask = 11
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+polygon = PackedVector2Array(-2, 0, 3, 6, 3, 0)
+depth = 4.0
+material = ExtResource("1_iyrce")
