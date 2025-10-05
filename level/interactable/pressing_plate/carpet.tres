@@ -4,7 +4,6 @@
 
 [resource]
 shading_mode = 0
-vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_b8wey")
 uv1_scale = Vector3(2, 2, 2)
 uv1_offset = Vector3(0.5, 0, 0)
