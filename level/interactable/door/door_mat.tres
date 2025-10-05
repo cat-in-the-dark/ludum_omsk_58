@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c3nvqmbhui6eg"]
+
+[ext_resource type="Shader" uid="uid://xu50x0251jr2" path="res://level/interactable/door/door.gdshader" id="1_hvsak"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_hvsak")
+shader_parameter/frequency = 4.0
+shader_parameter/amplitude = 2.0
+shader_parameter/ripple_rate = 3.0
+shader_parameter/blending = 0.999999977648
+shader_parameter/wave_amplitude = 0.10000000149012
+shader_parameter/wave_frequency = 9.99999977648
