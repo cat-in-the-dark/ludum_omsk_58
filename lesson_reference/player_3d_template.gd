@@ -67,6 +67,8 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _interactArea: Area3D = $SophiaSkin/InteractArea
 var kicking = false
 
+var checkpoint: Checkpoint = null
+
 var catToInteractWith: Node3D = null
 var objectToInteractWith: RigidBody3D = null
 var holdedObject: RigidBody3D = null
@@ -105,7 +107,10 @@ func _ready() -> void:
 	)
 	Events.kill_plane_touched_with_id.connect(func on_kill_plane_touched_with_id(killedObjectId: int) -> void:
 		if killedObjectId == get_instance_id():
-			global_position = _start_position
+			if checkpoint != null:
+				global_position = checkpoint.spawn_anchor
+			else:
+				global_position = _start_position
 			velocity = Vector3.ZERO
 			_skin.idle()
 			set_physics_process(true)
