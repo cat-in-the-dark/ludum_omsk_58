@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpwkxcxruvim"]
+
+[ext_resource type="Material" uid="uid://murw1v2rvhde" path="res://level/interactable/lava/lava_particles_mat.tres" id="1_1pv0e"]
+[ext_resource type="Material" uid="uid://c0yvi32xpw1d6" path="res://level/interactable/lava/clouds.tres" id="1_a2xjl"]
+[ext_resource type="Script" uid="uid://bp7o7w7wjk1r3" path="res://level/interactable/kill_plane/kill_plane_3d.gd" id="3_iejgl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1pv0e"]
+material = ExtResource("1_a2xjl")
+radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ce0ty"]
+size = Vector3(5, 1, 5)
+
+[node name="Lava" type="Node3D"]
+
+[node name="LavaParticles" type="GPUParticles3D" parent="."]
+amount = 128
+process_material = ExtResource("1_1pv0e")
+draw_pass_1 = SubResource("SphereMesh_1pv0e")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 128
+collision_mask = 10
+script = ExtResource("3_iejgl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ce0ty")
