@@ -78,6 +78,7 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _interactArea: Area3D = $SophiaSkin/InteractArea
 var kicking = false
 
+var catToInteractWith: Node3D = null
 var objectToInteractWith: RigidBody3D = null
 var holdedObject: RigidBody3D = null
 var holdedObjectMock: Node3D = null
@@ -197,6 +198,10 @@ func _physics_process(delta: float) -> void:
 			holdedObject = null
 			holdedObjectMock = null
 			holdingObjectNow = false
+		elif catToInteractWith != null:
+			Globals.level_cat_catched += 1
+			catToInteractWith.queue_free()
+			catToInteractWith = null
 		elif objectToInteractWith != null:
 			# grab object
 			holdedObject = objectToInteractWith
@@ -325,17 +330,16 @@ func _on_kick_area_body_entered(body: Node3D) -> void:
 		body.linear_velocity = getKickVelocity()
 	pass # Replace with function body.
 
-
 func _on_interact_area_body_entered(body: Node3D) -> void:
-	print_debug("entered %d" % body.name)
-	if !holdingObjectNow && objectToInteractWith == null && body is RigidBody3D:
-		print_debug("can interact with %d" % body.name)
+	print_debug("entered %s" % body.name)
+	if !holdingObjectNow && catToInteractWith == null && body is StaticBody3D:
+		catToInteractWith = body
+	elif !holdingObjectNow && objectToInteractWith == null && body is RigidBody3D:
+		print_debug("can interact with %s" % body.name)
 		objectToInteractWith = body
-	pass # Replace with function body.
 
 func _on_interact_area_body_exited(body: Node3D) -> void:
-	print_debug("left %d" % body.name)
+	print_debug("left %s" % body.name)
 	if !holdingObjectNow && body is RigidBody3D:
-		print_debug("no longer interactable -  %d" % body.name)
+		print_debug("no longer interactable -  %s" % body.name)
 		objectToInteractWith = null
-	pass # Replace with function body.

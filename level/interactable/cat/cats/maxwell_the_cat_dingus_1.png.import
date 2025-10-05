@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b13wd4adptic1"
-path.s3tc="res://.godot/imported/cat_-_ps1_low_poly_rigged_0.png-8f1e24095174138b4ce262e6da1150fd.s3tc.ctex"
+uid="uid://d2tgd7pvdvlqm"
+path.s3tc="res://.godot/imported/maxwell_the_cat_dingus_1.png-4e584d7700c475addb105ce770d0754e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "dc53e1998df7013e9598873cfb0b427d"
+"md5": "c92a0230dc658a5bceef33ab647242e2"
 }
 
 [deps]
 
-source_file="res://level/interactable/cat/cat_-_ps1_low_poly_rigged_0.png"
-dest_files=["res://.godot/imported/cat_-_ps1_low_poly_rigged_0.png-8f1e24095174138b4ce262e6da1150fd.s3tc.ctex"]
+source_file="res://level/interactable/cat/cats/maxwell_the_cat_dingus_1.png"
+dest_files=["res://.godot/imported/maxwell_the_cat_dingus_1.png-4e584d7700c475addb105ce770d0754e.s3tc.ctex"]
 
 [params]
 
