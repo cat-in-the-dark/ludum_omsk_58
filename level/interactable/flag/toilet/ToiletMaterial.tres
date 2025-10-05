@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://e32lblh5m3dg"]
+
+[ext_resource type="Texture2D" uid="uid://8036rs144s32" path="res://level/interactable/flag/toilet/toilet_toilet.png" id="1_jn678"]
+
+[resource]
+resource_name = "ToiletMaterial"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_jn678")
+texture_filter = 2
