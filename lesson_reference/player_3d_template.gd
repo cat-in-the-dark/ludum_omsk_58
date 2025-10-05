@@ -20,9 +20,6 @@ var pulling_ability = false
 ## animation tree changes between the idle and running states.
 @export var stopping_speed := 1.0
 
-@export var sprint_acceleration := acceleration * 3
-@export var sprint_move_speed := move_speed * 2
-
 @export_group("Camera")
 @export_range(0.0, 10.0) var joystick_sensitivity := 2.5
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.25
@@ -43,11 +40,6 @@ var gravity_base_multiplier = 2.0
 
 # when falling, gravity is more....3ravitier 
 var descendingGravityFactor = 1.3
-
-# how gliding affects gravity (1 - not affecting, 0 - no gravity, lol)
-var glidingGravityModifier = 1 / descendingGravityFactor * 0.3
-
-var stompGravityModifier = 3
 
 var _gravity : int = -30.0 * gravity_base_multiplier
 var _was_on_floor_last_frame := true
@@ -70,9 +62,6 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _landing_sound: AudioStreamPlayer3D = %LandingSound
 @onready var _jump_sound: AudioStreamPlayer3D = %JumpSound
 @onready var _dust_particles: GPUParticles3D = %DustParticles
-@onready var _glide_particles: GPUParticles3D = %GlideParticles
-
-@onready var _stomp_particles: GPUParticles3D = %StompParticles
 
 @onready var _kickingArea: Area3D = $SophiaSkin/KickArea
 @onready var _interactArea: Area3D = $SophiaSkin/InteractArea
@@ -163,12 +152,9 @@ func _physics_process(delta: float) -> void:
 	var current_acceleration = acceleration
 	
 	var appliedGravity = _gravity
-	if is_stomping:
-		appliedGravity *= stompGravityModifier
 	
 	# relates to gliding or opposite
 	var current_gravity_modifier = 1
-	var running = false
 	
 	if kicking_ability:
 		if kicking:
@@ -215,15 +201,6 @@ func _physics_process(delta: float) -> void:
 			objectToInteractWith = null
 			holdingObjectNow = true
 
-	_glide_particles.emitting = false
-	
-	# Decide whether or not 'run' button is being pressed:
-	if Input.is_action_pressed("run_%d" % player_idx):
-		running = true
-		current_move_speed = sprint_move_speed
-		current_acceleration = sprint_acceleration
-	else:
-		running = false
 	
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
 	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, tilt_lower_limit, tilt_upper_limit)
@@ -257,15 +234,6 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.y < 0:
 		appliedGravity = appliedGravity * descendingGravityFactor
-		if !is_stomping:
-			if !is_just_jumping && Input.is_action_just_pressed("crunch_%d" % player_idx):
-				is_stomping = true
-				appliedGravity *= stompGravityModifier
-			elif !is_just_jumping && Input.is_action_pressed("jump_%d" % player_idx):
-				_glide_particles.emitting = true
-				appliedGravity *= glidingGravityModifier
-	else:
-		appliedGravity = appliedGravity
 
 	# We separate out the y velocity to only interpolate the velocity in the
 	# ground plane, and not affect the gravity.
@@ -292,13 +260,10 @@ func _physics_process(delta: float) -> void:
 		else:
 			_skin.idle()
 
-	_dust_particles.emitting = is_on_floor() && running && ground_speed > 0.0
+	_dust_particles.emitting = is_on_floor() && ground_speed > 0.0
 
 	if is_on_floor() and not _was_on_floor_last_frame:
 		_landing_sound.play()
-		if is_stomping:
-			_stomp_particles.restart()
-		is_stomping = false
 	_was_on_floor_last_frame = is_on_floor()
 	move_and_slide()
 
