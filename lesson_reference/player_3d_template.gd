@@ -77,10 +77,10 @@ var holdedObjectParent: Node3D = null
 var holdingObjectNow = false
 
 func set_skills():
-	if player_idx == 2:
+	if player_idx == 1:
 		kicking_ability = true
 		pulling_ability = false
-	elif player_idx == 1:
+	elif player_idx == 2:
 		kicking_ability = false
 		pulling_ability = true
 	else:
