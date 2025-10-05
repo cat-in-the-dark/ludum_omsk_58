@@ -1,14 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnedxfn2pxh2t"]
+[gd_scene load_steps=10 format=3 uid="uid://cnedxfn2pxh2t"]
 
-[ext_resource type="Script" uid="uid://d2b17e5vuvmw8" path="res://level/level.gd" id="1_44x8d"]
+[ext_resource type="Script" path="res://level/level.gd" id="1_44x8d"]
 [ext_resource type="PackedScene" uid="uid://csjo346dagrji" path="res://level/interactable/cat/CatSmile.tscn" id="1_ktfr2"]
 [ext_resource type="PackedScene" uid="uid://brqo6apdh8ja8" path="res://level/interactable/box/Box.tscn" id="1_vkbyq"]
 [ext_resource type="PackedScene" uid="uid://bij84ol81kcts" path="res://level/interactable/kill_plane/kill_plane_3d.tscn" id="3_1g472"]
+[ext_resource type="Sky" uid="uid://r5xeigeohfnk" path="res://level/sky/sky.tres" id="4_ivpvi"]
 [ext_resource type="PackedScene" uid="uid://d4brk11gfax78" path="res://level/interactable/flag/flag.tscn" id="5_ktfr2"]
 [ext_resource type="Material" uid="uid://da188d7yrcfr8" path="res://level/platforms.tres" id="7_njuj4"]
+[ext_resource type="PackedScene" uid="uid://dh01h4uw8yfv2" path="res://level/interactable/checkpoint/checkpoint.tscn" id="8_0v1st"]
 
 [sub_resource type="Environment" id="Environment_6gtgk"]
-background_mode = 1
+background_mode = 2
+sky = ExtResource("4_ivpvi")
 ambient_light_source = 1
 reflected_light_source = 1
 
@@ -129,3 +132,6 @@ use_collision = true
 polygon = PackedVector2Array(0, 0, 3, 2, 3, 0)
 depth = 4.0
 material = ExtResource("7_njuj4")
+
+[node name="Checkpoint" parent="." instance=ExtResource("8_0v1st")]
+transform = Transform3D(-0.9367333, 0, 0.35004392, 0, 1, 0, -0.35004392, 0, -0.9367333, -3.6669433, 6, -17.251385)

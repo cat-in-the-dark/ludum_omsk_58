@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh01h4uw8yfv2"]
+
+[ext_resource type="Script" uid="uid://b6gx3tjjaj4b5" path="res://level/interactable/checkpoint/checkpoint.gd" id="1_1ilbm"]
+[ext_resource type="PackedScene" uid="uid://bjpylcff564fn" path="res://level/interactable/checkpoint/psx_crt_tv.glb" id="2_a5qyr"]
+[ext_resource type="Script" uid="uid://cywwebrtt0abm" path="res://level/interactable/checkpoint/checkpoint_skin.gd" id="3_bb5an"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bb5an"]
+size = Vector3(3, 2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7h8ih"]
+size = Vector3(1.3933105, 2.7753296, 1.3787537)
+
+[node name="Checkpoint" type="Node3D"]
+script = ExtResource("1_1ilbm")
+
+[node name="TV_Model_Player_1" parent="." instance=ExtResource("2_a5qyr")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("3_bb5an")
+
+[node name="TV_Model_Player_2" parent="." instance=ExtResource("2_a5qyr")]
+transform = Transform3D(1.9011941, 0, 0.6208551, 0, 2, 0, -0.6208551, 0, 1.9011941, 0, 1.1905898, 0)
+script = ExtResource("3_bb5an")
+
+[node name="TVCRT_M_TVCRT_0" parent="TV_Model_Player_2/Sketchfab_model/852c0fe8cbc04f6e905fd3b71339eb74_fbx/RootNode/TVCRT" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 1.4210855e-14, 1, 0.004518491, -0.012706795, -0.04065156)
+
+[node name="TVRemote" parent="TV_Model_Player_2/Sketchfab_model/852c0fe8cbc04f6e905fd3b71339eb74_fbx/RootNode" index="1"]
+visible = false
+
+[node name="TriggerArea" type="Area3D" parent="."]
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23828125, 1.430542, 2.0497577)
+shape = SubResource("BoxShape3D_bb5an")
+
+[node name="PhysicsBody" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07116699, 0.8876648, -0.068496704)
+shape = SubResource("BoxShape3D_7h8ih")
+
+[node name="SpawnAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.093463)
+
+[connection signal="body_entered" from="TriggerArea" to="." method="_on_trigger_area_body_entered"]
+
+[editable path="TV_Model_Player_1"]
+[editable path="TV_Model_Player_2"]
