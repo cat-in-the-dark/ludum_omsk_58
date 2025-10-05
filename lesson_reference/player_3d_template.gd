@@ -77,10 +77,10 @@ var holdedObjectParent: Node3D = null
 var holdingObjectNow = false
 
 func set_skills():
-	if player_idx == 1:
+	if player_idx == 2:
 		kicking_ability = true
 		pulling_ability = false
-	elif player_idx == 2:
+	elif player_idx == 1:
 		kicking_ability = false
 		pulling_ability = true
 	else:
@@ -149,8 +149,45 @@ func _handle_camera_joystic_move():
 	_camera_input_direction.y = raw_input.y * joystick_sensitivity
 
 func _do_hooking():
-	print("TODO: pulling ability")
-	# _hookTargetDetector.get_hook_target()
+	if holdingObjectNow:
+		return
+	if not _hookTargetDetector:
+		return
+	var target = _hookTargetDetector.get_hook_target()
+	if not target:
+		return
+	objectToInteractWith = target
+	_grabObject()
+	
+func _grabObject():
+	holdedObject = objectToInteractWith
+	holdedObject.linear_velocity = Vector3.ZERO
+	holdedObject.lock_rotation = true
+	#holdedObject.freeze = true
+	#holdedObject.sleeping = true
+	holdedObjectParent = holdedObject.get_parent()
+	#var prev_global := holdedObject.global_transform
+	holdedObjectParent.remove_child(holdedObject)
+	if holdedObject.has_method("getMockObject"):
+		holdedObjectMock = holdedObject.getMockObject()
+		_skin.add_child(holdedObjectMock)
+		holdedObjectMock.transform = _interactArea.transform
+	#holdedObject.transform = _interactArea.transform
+	objectToInteractWith = null
+	holdingObjectNow = true
+
+func _release_object():
+	var prev_global := holdedObjectMock.global_transform
+	_skin.remove_child(holdedObjectMock)
+	holdedObjectMock.queue_free()
+	holdedObjectParent.add_child(holdedObject)
+	holdedObject.global_transform = prev_global
+	holdedObject.freeze = false
+	holdedObject.lock_rotation = false
+	holdedObjectParent = null
+	holdedObject = null
+	holdedObjectMock = null
+	holdingObjectNow = false
 
 func _physics_process(delta: float) -> void:
 	_handle_camera_joystic_move()
@@ -173,45 +210,22 @@ func _physics_process(delta: float) -> void:
 	elif pulling_ability:
 		# maybe some code
 		if Input.is_action_just_pressed("ability_%d" % player_idx):
-			_do_hooking()
+			if holdingObjectNow:
+				# just to make it easier for user
+				_release_object()
+			else:
+				_do_hooking()
 
 	if Input.is_action_just_pressed("interact_%d" % player_idx):
 		if holdingObjectNow:
-			# release object
-			var prev_global := holdedObjectMock.global_transform
-			remove_child(holdedObjectMock)
-			holdedObjectMock.queue_free()
-			holdedObjectParent.add_child(holdedObject)
-			holdedObject.global_transform = prev_global
-			holdedObject.freeze = false
-			holdedObject.lock_rotation = false
-			holdedObjectParent = null
-			holdedObject = null
-			holdedObjectMock = null
-			holdingObjectNow = false
+			_release_object()
 		elif catToInteractWith != null:
 			Globals.level_cat_catched += 1
 			catToInteractWith.queue_free()
 			catToInteractWith = null
 		elif objectToInteractWith != null:
-			# grab object
-			holdedObject = objectToInteractWith
-			holdedObject.linear_velocity = Vector3.ZERO
-			holdedObject.lock_rotation = true
-			#holdedObject.freeze = true
-			#holdedObject.sleeping = true
-			holdedObjectParent = holdedObject.get_parent()
-			#var prev_global := holdedObject.global_transform
-			holdedObjectParent.remove_child(holdedObject)
-			if holdedObject.has_method("getMockObject"):
-				holdedObjectMock = holdedObject.getMockObject()
-				_skin.add_child(holdedObjectMock)
-				holdedObjectMock.transform = _interactArea.transform
-			#holdedObject.transform = _interactArea.transform
-			objectToInteractWith = null
-			holdingObjectNow = true
+			_grabObject()
 
-	
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
 	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, tilt_lower_limit, tilt_upper_limit)
 	_camera_pivot.rotation.y += _camera_input_direction.x * delta
