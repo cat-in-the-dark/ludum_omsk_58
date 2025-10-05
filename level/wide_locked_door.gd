@@ -9,16 +9,12 @@ var plates_pressed = 0
 func _on_plate_pressed():
 	plates_pressed += 1
 	if plates_pressed >= plates_required:
-		pass
-		#TODO: return when will implement
-		#door.open()
+		door.open()
 
 func _on_plate_unpressed():
 	plates_pressed -= 1
 	if plates_pressed < plates_required:
-		pass
-		#TODO: return when will implement
-		#door.close()
+		door.close()
 
 func _on_pressing_plate_plate_pressed() -> void:
 	_on_plate_pressed()

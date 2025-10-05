@@ -23,14 +23,50 @@ reflected_light_source = 1
 [node name="Level" type="Node3D"]
 script = ExtResource("1_hnohp")
 
+[node name="FallingDown" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("5_qfkrb")
+use_collision = true
+collision_mask = 11
+
+[node name="LongWall" parent="FallingDown" instance=ExtResource("9_3cr7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5025625, -3.4382067, -33.990623)
+
+[node name="LongWall2" parent="FallingDown" instance=ExtResource("9_3cr7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5025625, -3.4382067, -54.17227)
+
+[node name="LongWall3" parent="FallingDown" instance=ExtResource("9_3cr7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5025625, 6.6178894, -54.17227)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="FallingDown"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.1344166, -17.891006, -30.895325)
+material_override = ExtResource("5_qfkrb")
+use_collision = true
+size = Vector3(14.724609, 25, 8)
+
+[node name="LongWall4" parent="FallingDown/CSGBox3D6" instance=ExtResource("9_3cr7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.24784, 24.241066, 0.6974119)
+
+[node name="HighSlope" parent="FallingDown" instance=ExtResource("2_hcs30")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.9463115, -0.37621665, -43.320583)
+
+[node name="HighSlope3" parent="FallingDown" instance=ExtResource("2_hcs30")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.9463115, -6.217514, -38.461235)
+
+[node name="HighSlope2" parent="FallingDown" instance=ExtResource("2_hcs30")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.9463115, 5.4124975, -48.1064)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FallingDown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5959091, -4.3324146, -30.259508)
+size = Vector3(3, 3, 3)
+
 [node name="StashPressingPlate" parent="." instance=ExtResource("2_8d6n5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7352725, 0, -35.090195)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7352725, 0.00843364, -39.26703)
 
 [node name="Checkpoint1" parent="." instance=ExtResource("2_qfkrb")]
 transform = Transform3D(-0.8077018, 0, -0.5895911, 0, 1, 0, 0.5895911, 0, -0.8077018, -3.331787, 8.180377, -1.905302)
 
-[node name="HighSlope" parent="." instance=ExtResource("2_hcs30")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2586823, 0, -26.68347)
+[node name="Checkpoint2" parent="." instance=ExtResource("2_qfkrb")]
+transform = Transform3D(-0.8077018, 0, -0.5895911, 0, 1, 0, 0.5895911, 0, -0.8077018, 2.054747, 0.12418127, -26.132866)
 
 [node name="Cat" parent="." instance=ExtResource("2_oldn7")]
 transform = Transform3D(0.9989957, 0, -0.04480505, 0, 1, 0, 0.04480505, 0, 0.9989957, -2.5320315, 6.902055, -22.9591)
@@ -40,6 +76,9 @@ transform = Transform3D(0.9989957, 0, -0.04480505, 0, 1, 0, 0.04480505, 0, 0.998
 
 [node name="Cat3" parent="." instance=ExtResource("2_oldn7")]
 transform = Transform3D(0.9989957, 0, -0.04480505, 0, 1, 0, 0.04480505, 0, 0.9989957, -7.0422115, 1.2527943, 61.738167)
+
+[node name="Cat4" parent="." instance=ExtResource("2_oldn7")]
+transform = Transform3D(0.9989957, 0, -0.04480505, 0, 1, 0, 0.04480505, 0, 0.9989957, 0.27937388, 8.32071, -56.668964)
 
 [node name="BoxLeftIsland" parent="." instance=ExtResource("3_hcs30")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.342369, 10.515269, 56.890312)
@@ -53,7 +92,7 @@ environment = SubResource("Environment_6gtgk")
 [node name="KillPlane" parent="." instance=ExtResource("4_3cr7g")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -55.25, -17.7152, -20)
 
-[node name="Flag" parent="." instance=ExtResource("6_kkk5s")]
+[node name="FinishFlag" parent="." instance=ExtResource("6_kkk5s")]
 transform = Transform3D(0.00027926365, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 0.00027926365, -56.069633, 9.949037, -19.970661)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
@@ -294,15 +333,17 @@ transform = Transform3D(-3.4969112e-08, 0.8, -3.4969112e-08, 0, -3.4969112e-08, 
 
 [node name="Ceiling" parent="BoxStash" instance=ExtResource("9_3cr7g")]
 transform = Transform3D(-2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0, 0, 0, 0.5, 1.5985069, 8.149645, -47.495953)
+visible = false
 
 [node name="Ceiling2" parent="BoxStash" instance=ExtResource("9_3cr7g")]
 transform = Transform3D(-2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0, 0, 0, 0.5, 4.517101, 8.149645, -47.495953)
+visible = false
 
 [node name="FinishPressingPlate2" parent="." instance=ExtResource("2_8d6n5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.222667, 5.8672705, -22.662182)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.222667, 6.011281, -22.662182)
 
 [node name="FinishPressingPlate" parent="." instance=ExtResource("2_8d6n5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.222667, 5.8672705, -16.950918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.222667, 6.0066247, -16.950918)
 
 [connection signal="plate_pressed" from="StashPressingPlate" to="BoxStash/StashDoor" method="_on_pressing_plate_plate_pressed"]
 [connection signal="plate_unpressed" from="StashPressingPlate" to="BoxStash/StashDoor" method="_on_pressing_plate_plate_unpressed"]

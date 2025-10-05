@@ -9,7 +9,7 @@
 script = ExtResource("1_1il7v")
 
 [node name="Player3DTemplate" parent="." node_paths=PackedStringArray("_camera") instance=ExtResource("1_w0p8v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43638, 0, -7.8513)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43638, 0, -3.33674)
 _camera = NodePath("../Camera3D")
 
 [node name="FlagReachedScreen" parent="." instance=ExtResource("19_cpgj4")]

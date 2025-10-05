@@ -24,6 +24,7 @@ render_target_update_mode = 4
 [node name="Game" parent="HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("1_ejo5v")]
 
 [node name="Player3DTemplate" parent="HBoxContainer/SubViewportContainer1/SubViewport1/Game" index="0" node_paths=PackedStringArray("hookTargetPointer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8636532, 0, -0.1527834)
 hookTargetPointer = NodePath("../../HookTargetPointer_1")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
@@ -40,7 +41,7 @@ render_target_update_mode = 4
 fov = 50.0
 
 [node name="Player_2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" node_paths=PackedStringArray("hookTargetPointer", "_camera") instance=ExtResource("2_yx8je")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31189203, 0, -5.652145)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31189203, 0, -0.39393997)
 player_idx = 2
 hookTargetPointer = NodePath("../HookTargetPointer_2")
 _camera = NodePath("../Camera3D_2")
