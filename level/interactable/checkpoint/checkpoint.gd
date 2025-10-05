@@ -9,10 +9,10 @@ extends Node3D
 ]
 
 func switch_off(player_idx):
-	tvs[player_idx].switch_off_tv()
+	tvs[player_idx - 1].switch_off_tv()
 
 func switch_on(player_idx):
-	tvs[player_idx].switch_on_tv()
+	tvs[player_idx - 1].switch_on_tv()
 
 func use_ckpt(player: Player) -> void:
 	var prev_ckpt = player.checkpoint

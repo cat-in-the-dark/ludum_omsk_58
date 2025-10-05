@@ -284,8 +284,18 @@ func getCharacterLookDirection():
 	return skin_direction_basis.z
 
 func getKickVelocity():
-	var kick_horizontal_strengh = 30
-	var kick_vertical_strength = 30
+	var kick_horizontal_strengh = 40
+	var kick_vertical_strength = 40
+	var kick_velocity = Vector3.ZERO
+	var direction = getCharacterLookDirection()
+	kick_velocity.x = direction.x * kick_horizontal_strengh
+	kick_velocity.y = kick_vertical_strength
+	kick_velocity.z = direction.z * kick_horizontal_strengh
+	return kick_velocity
+
+func getBoxKickVelocity():
+	var kick_horizontal_strengh = 20
+	var kick_vertical_strength = 20
 	var kick_velocity = Vector3.ZERO
 	var direction = getCharacterLookDirection()
 	kick_velocity.x = direction.x * kick_horizontal_strengh
@@ -297,7 +307,7 @@ func _on_kick_area_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		body.velocity = getKickVelocity()
 	elif body is RigidBody3D:
-		body.linear_velocity = getKickVelocity()
+		body.linear_velocity = getBoxKickVelocity()
 	pass # Replace with function body.
 
 func _on_interact_area_body_entered(body: Node3D) -> void:
