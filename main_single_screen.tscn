@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqapjfmx3h8gw"]
+
+[ext_resource type="PackedScene" uid="uid://bafjmbwgohfk8" path="res://main_game.tscn" id="1_tjn2e"]
+[ext_resource type="PackedScene" uid="uid://b1f6dvhwmiinb" path="res://player/hook/crosshair/hook_target_pointer.tscn" id="2_w0p2i"]
+[ext_resource type="Script" uid="uid://b4bwok6sq6m37" path="res://main_single_screen.gd" id="3_si7im"]
+
+[node name="main single screen" type="Node"]
+
+[node name="game" parent="." instance=ExtResource("1_tjn2e")]
+
+[node name="Player_1" parent="game" index="0" node_paths=PackedStringArray("hookTargetPointer", "_camera")]
+hookTargetPointer = NodePath("../../HookTargetPointer_1")
+_camera = NodePath("../../Camera3D")
+
+[node name="Player_2" parent="game" index="1" node_paths=PackedStringArray("hookTargetPointer")]
+hookTargetPointer = NodePath("../../HookTargetPointer_2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="HookTargetPointer_1" parent="." instance=ExtResource("2_w0p2i")]
+
+[node name="HookTargetPointer_2" parent="." instance=ExtResource("2_w0p2i")]
+
+[node name="Setup" type="Node" parent="."]
+script = ExtResource("3_si7im")
+
+[editable path="game"]

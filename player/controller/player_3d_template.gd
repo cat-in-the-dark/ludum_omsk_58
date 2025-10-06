@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
+@export_enum("Kick:1", "Hook:2") var skill_idx = 1
 @export var player_idx = 1
 var kicking_ability = true
 var pulling_ability = false
@@ -77,10 +78,10 @@ var holdedObjectParent: Node3D = null
 var holdingObjectNow = false
 
 func set_skills():
-	if player_idx == 1:
+	if skill_idx == 1:
 		kicking_ability = true
 		pulling_ability = false
-	elif player_idx == 2:
+	elif skill_idx == 2:
 		kicking_ability = false
 		pulling_ability = true
 	else:
@@ -92,12 +93,16 @@ func set_skills():
 		# fast hack to remove hooking area if no ability
 		remove_child(_hookTargetDetector)
 		_hookTargetDetector = null
-		if hookTargetPointer:
-			hookTargetPointer.hide()
-		
+	setup_crosshair()
+
+func setup_crosshair():
+	if pulling_ability and _camera:
+		hookTargetPointer.show()
+	else:
+		hookTargetPointer.hide()
 
 func _ready() -> void:
-	_skin.set_variant(player_idx)
+	_skin.set_variant(skill_idx)
 	set_skills()
 	Events.kill_plane_touched.connect(func on_kill_plane_touched() -> void:
 		global_position = _start_position
@@ -130,6 +135,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not Globals.single_player and player_idx != 1:
+		# only one user in multiplayer can use mouse
+		return
+
 	var player_is_using_mouse := (
 		event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	)

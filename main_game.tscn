@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bafjmbwgohfk8"]
+
+[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://player/controller/player_3d_template.tscn" id="1_ykeeq"]
+[ext_resource type="PackedScene" uid="uid://bxg6oejpaitdt" path="res://level/interactable/flag/flag_reached_screen.tscn" id="2_6bm6p"]
+[ext_resource type="PackedScene" uid="uid://cbjlfi4bvs8bl" path="res://level/level-first.tscn" id="3_dugkq"]
+
+[node name="game" type="Node"]
+
+[node name="Player_1" parent="." instance=ExtResource("1_ykeeq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.345093)
+
+[node name="Player_2" parent="." instance=ExtResource("1_ykeeq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6441579, 0, -33.345093)
+skill_idx = 2
+player_idx = 2
+
+[node name="FlagReachedScreen2" parent="." instance=ExtResource("2_6bm6p")]
+next_scene = "res://ui/gamewin_scene_split_screen.tscn"
+restart_scene = "res://ui/menu_screen.tscn"
+
+[node name="Level" parent="." instance=ExtResource("3_dugkq")]

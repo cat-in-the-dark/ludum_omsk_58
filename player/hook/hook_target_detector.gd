@@ -33,7 +33,6 @@ func _on_exit_hook_area(body: PhysicsBody3D) -> void:
 		return
 	# could be slow, but who cares
 	hook_targets.erase(body)
-	pass
 
 func _ready() -> void:
 	connect("body_entered", _on_enter_hook_area)
@@ -44,7 +43,10 @@ func _process(_delta: float) -> void:
 
 func update_best_target():
 	if len(hook_targets) == 0:
-		return null
+		return
+	if not player._camera:
+		return
+
 	var screen_center = player.hookTargetPointer.get_viewport_rect().size / 2
 	var min_dist = 10000000
 	var min_pos = Vector2.ZERO
