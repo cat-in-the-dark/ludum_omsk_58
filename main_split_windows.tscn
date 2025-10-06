@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bq2ova8hsxglo"]
 
-[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://split_window/window_view.gd" id="1_5ltii"]
-[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://split_window/window_main.gd" id="1_7clrm"]
+[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://ui/split_window/window_view.gd" id="1_5ltii"]
+[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://ui/split_window/window_main.gd" id="1_7clrm"]
 [ext_resource type="PackedScene" uid="uid://bvt4747kc5u2t" path="res://game.tscn" id="3_htifh"]
-[ext_resource type="PackedScene" uid="uid://b1f6dvhwmiinb" path="res://player/hook_crosshair/hook_target_pointer.tscn" id="3_myisc"]
-[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://lesson_reference/player_3d_template.tscn" id="4_yybna"]
+[ext_resource type="PackedScene" uid="uid://b1f6dvhwmiinb" path="res://player/hook/crosshair/hook_target_pointer.tscn" id="3_myisc"]
+[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://player/controller/player_3d_template.tscn" id="4_yybna"]
 [ext_resource type="PackedScene" uid="uid://bxg6oejpaitdt" path="res://level/interactable/flag/flag_reached_screen.tscn" id="5_cb1g2"]
 
 [node name="main_split_windows" type="Node"]
@@ -57,7 +57,7 @@ _camera = NodePath("../Camera2")
 fov = 50.0
 
 [node name="FlagReachedScreen" parent="Window2" instance=ExtResource("5_cb1g2")]
-next_scene = "res://gamewin_scene_split_windows.tscn"
-restart_scene = "res://menu_scene_split_windows.tscn"
+next_scene = "res://ui/gamewin_scene_split_windows.tscn"
+restart_scene = "res://ui/menu_scene_split_windows.tscn"
 
 [editable path="Window1/Game"]

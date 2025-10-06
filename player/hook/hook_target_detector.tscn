@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djugmg305huk3"]
 
-[ext_resource type="Script" uid="uid://c7c6qln3orici" path="res://lesson_reference/hook_target_detector.gd" id="1_3ktvt"]
+[ext_resource type="Script" uid="uid://c7c6qln3orici" path="res://player/hook/hook_target_detector.gd" id="1_3ktvt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jgkwk"]
 radius = 10.0

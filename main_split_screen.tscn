@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://21jakirix3hu"]
 
-[ext_resource type="PackedScene" uid="uid://b1f6dvhwmiinb" path="res://player/hook_crosshair/hook_target_pointer.tscn" id="1_150ms"]
+[ext_resource type="PackedScene" uid="uid://b1f6dvhwmiinb" path="res://player/hook/crosshair/hook_target_pointer.tscn" id="1_150ms"]
 [ext_resource type="PackedScene" uid="uid://bvt4747kc5u2t" path="res://game.tscn" id="1_ejo5v"]
-[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://lesson_reference/player_3d_template.tscn" id="2_yx8je"]
+[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://player/controller/player_3d_template.tscn" id="2_yx8je"]
 [ext_resource type="PackedScene" uid="uid://bxg6oejpaitdt" path="res://level/interactable/flag/flag_reached_screen.tscn" id="3_yx8je"]
 
 [node name="main" type="Node"]
@@ -47,7 +47,7 @@ hookTargetPointer = NodePath("../HookTargetPointer_2")
 _camera = NodePath("../Camera3D_2")
 
 [node name="FlagReachedScreen" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("3_yx8je")]
-next_scene = "res://gamewin_scene_split_screen.tscn"
-restart_scene = "res://menu_scene_split_screen.tscn"
+next_scene = "res://ui/gamewin_scene_split_screen.tscn"
+restart_scene = "res://ui/menu_scene_split_screen.tscn"
 
 [editable path="HBoxContainer/SubViewportContainer1/SubViewport1/Game"]

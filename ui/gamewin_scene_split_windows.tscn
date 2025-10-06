@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cqutas7517f53"]
 
-[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://split_window/window_main.gd" id="1_trbk3"]
-[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://split_window/window_view.gd" id="2_1rgvr"]
+[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://ui/split_window/window_main.gd" id="1_trbk3"]
+[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://ui/split_window/window_view.gd" id="2_1rgvr"]
 [ext_resource type="Script" uid="uid://bs8b70finly6s" path="res://ui/win_scene.gd" id="3_m5fod"]
 [ext_resource type="PackedScene" uid="uid://b44rc61pegl62" path="res://ui/gamewin_view.tscn" id="3_trbk3"]
 
@@ -38,4 +38,4 @@ script = ExtResource("2_1rgvr")
 
 [node name="GameWin" type="Node" parent="."]
 script = ExtResource("3_m5fod")
-next_scene = "res://menu_scene_split_windows.tscn"
+next_scene = "res://ui/menu_scene_split_windows.tscn"

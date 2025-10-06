@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ct10icgu45m3o"]
 
-[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://split_window/window_main.gd" id="1_y5iuu"]
-[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://split_window/window_view.gd" id="2_1hlud"]
-[ext_resource type="PackedScene" uid="uid://dpv7xsdeqkswa" path="res://menu/menu_canvas.tscn" id="3_y5iuu"]
+[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://ui/split_window/window_main.gd" id="1_y5iuu"]
+[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://ui/split_window/window_view.gd" id="2_1hlud"]
+[ext_resource type="PackedScene" uid="uid://dpv7xsdeqkswa" path="res://ui/menu_canvas.tscn" id="3_y5iuu"]
 [ext_resource type="Script" uid="uid://bs7v3plu4wa1l" path="res://ui/menu_scene.gd" id="4_68exs"]
 
 [node name="MenuScene" type="Node"]
