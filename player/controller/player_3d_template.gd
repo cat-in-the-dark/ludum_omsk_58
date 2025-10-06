@@ -147,13 +147,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera_input_direction.y = event.relative.y * mouse_sensitivity
 
 func _handle_camera_joystic_move():
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		return
 	if Input.is_action_just_pressed("camera_reset_%d" % player_idx):
 		# TODO: maybe tween?
 		_camera_pivot.rotation = _skin.rotation
 		return
 	var raw_input := Input.get_vector("camera_left_%d" % player_idx, "camera_right_%d" % player_idx, "camera_up_%d" % player_idx, "camera_down_%d" % player_idx, 0.2)
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if raw_input.length() > 0.01:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			return
+
+
 	_camera_input_direction.x = -raw_input.x * joystick_sensitivity
 	_camera_input_direction.y = raw_input.y * joystick_sensitivity
 
