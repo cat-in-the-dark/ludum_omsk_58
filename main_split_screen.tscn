@@ -28,6 +28,7 @@ render_target_update_mode = 4
 [node name="HookTargetPointer_1" parent="HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("1_150ms")]
 
 [node name="Camera3D_1" type="Camera3D" parent="HBoxContainer/SubViewportContainer1/SubViewport1"]
+fov = 50.0
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2

@@ -341,15 +341,11 @@ func _on_kick_area_body_entered(body: Node3D) -> void:
 	pass # Replace with function body.
 
 func _on_interact_area_body_entered(body: Node3D) -> void:
-	print_debug("entered %s" % body.name)
 	if !holdingObjectNow && catToInteractWith == null && body is StaticBody3D:
 		catToInteractWith = body
 	elif !holdingObjectNow && objectToInteractWith == null && body is RigidBody3D:
-		print_debug("can interact with %s" % body.name)
 		objectToInteractWith = body
 
 func _on_interact_area_body_exited(body: Node3D) -> void:
-	print_debug("left %s" % body.name)
 	if !holdingObjectNow && body is RigidBody3D:
-		print_debug("no longer interactable -  %s" % body.name)
 		objectToInteractWith = null

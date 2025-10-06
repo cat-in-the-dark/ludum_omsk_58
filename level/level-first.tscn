@@ -62,10 +62,11 @@ size = Vector3(3, 3, 3)
 [node name="StashPressingPlate" parent="." instance=ExtResource("2_8d6n5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7352725, 0.00843364, -39.26703)
 
-[node name="Checkpoint1" parent="." instance=ExtResource("2_qfkrb")]
-transform = Transform3D(-0.8077018, 0, -0.5895911, 0, 1, 0, 0.5895911, 0, -0.8077018, -3.331787, 8.180377, -1.905302)
-
 [node name="Checkpoint2" parent="." instance=ExtResource("2_qfkrb")]
+transform = Transform3D(-0.8077018, 0, -0.5895911, 0, 1, 0, 0.5895911, 0, -0.8077018, -3.331787, 8.180377, -1.905302)
+idx = 2
+
+[node name="Checkpoint1" parent="." instance=ExtResource("2_qfkrb")]
 transform = Transform3D(-0.8077018, 0, -0.5895911, 0, 1, 0, 0.5895911, 0, -0.8077018, 2.054747, 0.12418127, -26.132866)
 
 [node name="Cat" parent="." instance=ExtResource("2_oldn7")]

@@ -17,8 +17,8 @@ func switch_on(player_idx):
 func use_ckpt(player: Player) -> void:
 	var prev_ckpt = player.checkpoint
 	if prev_ckpt:
-		prev_ckpt.switch_off(player.player_idx)
-	switch_on(player.player_idx)
+		prev_ckpt.switch_off(player.skill_idx)
+	switch_on(player.skill_idx)
 	player.checkpoint = self
 
 func _on_trigger_area_body_entered(body: Node3D) -> void:

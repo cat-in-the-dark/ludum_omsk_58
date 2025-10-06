@@ -31,5 +31,12 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSeekerArea"]
 shape = SubResource("SphereShape3D_1f8qm")
 
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1.0000005, 0, -7.450581e-09, 0, 1, 0, 7.450581e-09, 0, 1.0000005, 0, 1.1846063, 0)
+billboard = 1
+text = "Press F 
+Xbox's X"
+font_size = 92
+
 [connection signal="body_entered" from="PlayerSeekerArea" to="." method="_on_player_seeker_area_body_entered"]
 [connection signal="body_exited" from="PlayerSeekerArea" to="." method="_on_player_seeker_area_body_exited"]
