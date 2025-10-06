@@ -77,6 +77,40 @@ var holdedObjectMock: Node3D = null
 var holdedObjectParent: Node3D = null
 var holdingObjectNow = false
 
+func _jump_cmd() -> bool:
+	if Globals.single_player:
+		return player_idx == 1 and Input.is_action_just_pressed("jump")
+	return Input.is_action_just_pressed("jump_%d" % player_idx)
+
+func _interact_cmd() -> bool:
+	if Globals.single_player:
+		return player_idx == 1 and Input.is_action_just_pressed("interact")
+	return Input.is_action_just_pressed("interact_%d" % player_idx)
+
+func _ability_cmd() -> bool:
+	if Globals.single_player:
+		return player_idx == 1 and Input.is_action_just_pressed("ability")
+	return Input.is_action_just_pressed("ability_%d" % player_idx)
+
+func _move_cmd() -> Vector2:
+	if Globals.single_player:
+		if player_idx == 1:
+			return Input.get_vector("move_left", "move_right", "move_up", "move_down", 0.4)
+		return Vector2.ZERO
+	return Input.get_vector("move_left_%d" % player_idx, "move_right_%d" % player_idx, "move_up_%d" % player_idx, "move_down_%d" % player_idx, 0.4)
+
+func _camera_cmd() -> Vector2:
+	if Globals.single_player:
+		if player_idx == 1:
+			return Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down", 0.2)
+		return Vector2.ZERO
+	return Input.get_vector("camera_left_%d" % player_idx, "camera_right_%d" % player_idx, "camera_up_%d" % player_idx, "camera_down_%d" % player_idx, 0.2)
+
+func _camera_reset_cmd() -> bool:
+	if Globals.single_player:
+		return player_idx == 1 and Input.is_action_just_pressed("camera_reset")
+	return Input.is_action_just_pressed("camera_reset_%d" % player_idx)
+
 func set_skills():
 	if skill_idx == 1:
 		kicking_ability = true
@@ -128,6 +162,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not Globals.single_player:
+		return
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif event.is_action_pressed("left_click"):
@@ -147,11 +183,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera_input_direction.y = event.relative.y * mouse_sensitivity
 
 func _handle_camera_joystic_move():
-	if Input.is_action_just_pressed("camera_reset_%d" % player_idx):
+	if _camera_reset_cmd():
 		# TODO: maybe tween?
 		_camera_pivot.rotation = _skin.rotation
 		return
-	var raw_input := Input.get_vector("camera_left_%d" % player_idx, "camera_right_%d" % player_idx, "camera_up_%d" % player_idx, "camera_down_%d" % player_idx, 0.2)
+	var raw_input := _camera_cmd()
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if raw_input.length() > 0.01:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -220,19 +256,19 @@ func _physics_process(delta: float) -> void:
 		if kicking:
 			kicking = false
 			_kickingArea.monitoring = false
-		elif Input.is_action_just_pressed("ability_%d" % player_idx):
+		elif _ability_cmd():
 			kicking = true
 			_kickingArea.monitoring = true
 	elif pulling_ability:
 		# maybe some code
-		if Input.is_action_just_pressed("ability_%d" % player_idx):
+		if _ability_cmd():
 			if holdingObjectNow:
 				# just to make it easier for user
 				_release_object()
 			else:
 				_do_hooking()
 
-	if Input.is_action_just_pressed("interact_%d" % player_idx):
+	if _interact_cmd():
 		if holdingObjectNow:
 			_release_object()
 		elif catToInteractWith != null:
@@ -249,7 +285,7 @@ func _physics_process(delta: float) -> void:
 	_camera_input_direction = Vector2.ZERO
 
 	# Calculate movement input and align it to the camera's direction.
-	var raw_input := Input.get_vector("move_left_%d" % player_idx, "move_right_%d" % player_idx, "move_up_%d" % player_idx, "move_down_%d" % player_idx, 0.4)
+	var raw_input := _move_cmd()
 	# Should be projected onto the ground plane.
 	var forward := Vector3.FORWARD
 	var right := Vector3.RIGHT
@@ -270,7 +306,7 @@ func _physics_process(delta: float) -> void:
 	var target_angle := Vector3.BACK.signed_angle_to(_last_input_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
 
-	var is_just_jumping := Input.is_action_pressed("jump_%d" % player_idx) and is_on_floor()	
+	var is_just_jumping := _jump_cmd() and is_on_floor()	
 	
 	if velocity.y < 0:
 		appliedGravity = appliedGravity * descendingGravityFactor
