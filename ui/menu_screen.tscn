@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwowgh7cjpttd"]
+
+[ext_resource type="Script" uid="uid://i8wvjedqv7wk" path="res://ui/menu_screen.gd" id="1_dahtx"]
+[ext_resource type="PackedScene" uid="uid://6wqac3w1hjj8" path="res://ui/character_preview.tscn" id="1_ob0sn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ob0sn"]
+font_size = 24
+
+[node name="MenuScreen" type="Node"]
+script = ExtResource("1_dahtx")
+
+[node name="Icon Single Player" type="SubViewportContainer" parent="."]
+offset_left = 169.0
+offset_top = 136.0
+offset_right = 241.0
+offset_bottom = 208.0
+
+[node name="Character Preview" parent="Icon Single Player" instance=ExtResource("1_ob0sn")]
+size = Vector2i(72, 72)
+
+[node name="Single Playe Text" type="Label" parent="."]
+offset_left = 130.0
+offset_top = 205.0
+offset_right = 276.0
+offset_bottom = 239.0
+text = "single player"
+label_settings = SubResource("LabelSettings_ob0sn")
+
+[node name="Icon Two Players 1" type="SubViewportContainer" parent="."]
+offset_left = 312.0
+offset_top = 136.0
+offset_right = 384.0
+offset_bottom = 208.0
+
+[node name="Character Preview" parent="Icon Two Players 1" instance=ExtResource("1_ob0sn")]
+size = Vector2i(72, 72)
+
+[node name="Icon Two Players 2" type="SubViewportContainer" parent="."]
+offset_left = 388.0
+offset_top = 136.0
+offset_right = 460.0
+offset_bottom = 208.0
+
+[node name="Character Preview" parent="Icon Two Players 2" instance=ExtResource("1_ob0sn")]
+size = Vector2i(72, 72)
+
+[node name="SophiaSkin" parent="Icon Two Players 2/Character Preview" index="0"]
+variant = 2
+
+[node name="Multiplayer Text" type="Label" parent="."]
+offset_left = 320.0
+offset_top = 205.0
+offset_right = 454.0
+offset_bottom = 239.0
+text = "multiplayer"
+label_settings = SubResource("LabelSettings_ob0sn")
+
+[node name="SinglePlayer BTN" type="Button" parent="."]
+offset_left = 125.0
+offset_top = 133.0
+offset_right = 284.0
+offset_bottom = 247.0
+flat = true
+
+[node name="Multiplayer BTN" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -331.0
+offset_top = 133.0
+offset_right = -172.0
+offset_bottom = 247.0
+grow_horizontal = 0
+flat = true
+
+[connection signal="mouse_entered" from="SinglePlayer BTN" to="." method="_on_single_player_btn_mouse_entered"]
+[connection signal="mouse_exited" from="SinglePlayer BTN" to="." method="_on_single_player_btn_mouse_exited"]
+[connection signal="pressed" from="SinglePlayer BTN" to="." method="_on_single_player_btn_pressed"]
+[connection signal="mouse_entered" from="Multiplayer BTN" to="." method="_on_multiplayer_btn_mouse_entered"]
+[connection signal="mouse_exited" from="Multiplayer BTN" to="." method="_on_multiplayer_btn_mouse_exited"]
+[connection signal="pressed" from="Multiplayer BTN" to="." method="_on_multiplayer_btn_pressed"]
+
+[editable path="Icon Single Player/Character Preview"]
+[editable path="Icon Two Players 2/Character Preview"]

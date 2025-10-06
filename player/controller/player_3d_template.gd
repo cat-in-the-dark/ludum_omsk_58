@@ -207,7 +207,6 @@ func _physics_process(delta: float) -> void:
 			kicking = false
 			_kickingArea.monitoring = false
 		elif Input.is_action_just_pressed("ability_%d" % player_idx):
-			print("Kicking")
 			kicking = true
 			_kickingArea.monitoring = true
 	elif pulling_ability:
