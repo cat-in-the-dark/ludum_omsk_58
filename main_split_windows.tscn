@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bq2ova8hsxglo"]
 
-[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://screens/window_view.gd" id="1_5ltii"]
-[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://screens/window_main.gd" id="1_7clrm"]
+[ext_resource type="Script" uid="uid://dj8y72lg8gkky" path="res://split_window/window_view.gd" id="1_5ltii"]
+[ext_resource type="Script" uid="uid://c5ca40kmqsjkw" path="res://split_window/window_main.gd" id="1_7clrm"]
 [ext_resource type="PackedScene" uid="uid://bvt4747kc5u2t" path="res://game.tscn" id="3_htifh"]
 [ext_resource type="PackedScene" uid="uid://b1f6dvhwmiinb" path="res://player/hook_crosshair/hook_target_pointer.tscn" id="3_myisc"]
 [ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://lesson_reference/player_3d_template.tscn" id="4_yybna"]
