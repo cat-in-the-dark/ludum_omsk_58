@@ -2,6 +2,8 @@
 
 Game for Omsk Ludum Dare 58
 
+![](./screenshots/6d96d.png)
+
 ## Genre
 Cooperative Split-screen 3D-platformer
 
@@ -21,6 +23,8 @@ They tries to reach reality by:
 - Box will return to spawn point if lost in pit below.
 - Collect all the cats if you dare.
 
+![](./screenshots/6d970.png)
+
 ## Controls(Gamepads only):
 
 - Left stick / WASD - character movement
@@ -38,3 +42,5 @@ First player has ability to 'push' objects in front of him -  boxes and other pl
 
 Second player has ability to 'pull' objects (boxes and other player)  to him.
 Box would be in hand as result of pull.
+
+![](./screenshots/6d9af.png)
