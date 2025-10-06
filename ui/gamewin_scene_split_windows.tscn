@@ -38,4 +38,4 @@ script = ExtResource("2_1rgvr")
 
 [node name="GameWin" type="Node" parent="."]
 script = ExtResource("3_m5fod")
-next_scene = "res://ui/menu_scene_split_windows.tscn"
+next_scene = "res://ui/menu_screen.tscn"
